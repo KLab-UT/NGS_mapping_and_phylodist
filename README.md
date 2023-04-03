@@ -16,8 +16,11 @@ Scripts used to examine the amount of genetic variation in nuclear-encoded mitoc
 Parthenogenetic whiptail lizards have been shown to have lower endurance capacity 
 ([Cullum, 1997](https://www.journals.uchicago.edu/doi/abs/10.1086/286055?casa_token=q8DOEvxRkccAAAAA:nmq4l99bzJ7XY8vxokdkj0eRg6816F4_zQ9VSFx7sstxB_qBfty9GAPVe1uUGPgpuMU7CZL4ySIZ); [Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt))
  and mitochondrial respiration ([Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt)). 
+
  We hypothesize that lower endurance and mitochondrial respiration in these lizards is a result of reduced genetic compatibility in Nuc-Mt\* genes due to either 
- (A) inter-genomic interactions or (B) intra-genomic interactions. Inter- and intra- prefixes are in reference to the parental genomes of the parthenogenetic whiptails, which are of hybrid origin (i.e., the crossing of two divergent species resulted in the new evolutionary lineage of the parthenogenetic species). Inter-genomic refers to interactions between parental genomes (between gene products of maternal ancestry and gene products of paternal ancestry) and intra-genomic refers to interactions within a parental genome (e.g., between nuclear gene products of maternal ancestry and mitochondrial gene products of maternal ancestry). Examining the Nuc-Mt genetic variability between the sexual parental species provides a base for testing the inter-genomic hypothesis: If we find variation in Nuc-Mt genes between hybridizing species, this variation is likely present in the 
+ (A) inter-genomic interactions or (B) intra-genomic interactions. Inter- and intra- prefixes are in reference to the parental genomes of the parthenogenetic whiptails, which are of hybrid origin (i.e., the crossing of two divergent species resulted in the new evolutionary lineage of the parthenogenetic species). Inter-genomic refers to interactions between parental genomes (between gene products of maternal ancestry and gene products of paternal ancestry) and intra-genomic refers to interactions within a parental genome (e.g., between nuclear gene products of maternal ancestry and mitochondrial gene products of maternal ancestry). 
+
+Examining the Nuc-Mt genetic variability between the sexual parental species provides a base for testing the inter-genomic hypothesis: If we find variation in Nuc-Mt genes between hybridizing species, this variation is likely present in the 
  "frozen"\*\* 
  genomes 
 of the parthenogenetic species. If no variation is present in Nuc-Mt genes between hybridizing species, then a source other than reduced compatibility between the divergent genomes is responsible for the reduced performance in parthenogens (e.g., intra-genomic interactions). 
@@ -42,5 +45,33 @@ We performed paired-end Illumina sequencing for four parental sexual species tha
 | RLK019_USD16091390L_HKG5MDSXX_L1_2.fq.gz |  RLK019  | A. inornatus      | 1.8 GB  |
 | RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz |  RLK034  | A. marmoratus     | 11 GB   |
 | RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz |  RLK034  | A. marmoratus     | 12 GB   |
+
+Because there is no annotated reference genome for Aspidoscelis, we will map the raw data to the annotated genome of a species within the same Superfamily: Lacertoidea. The available reference genomes are as follows:
+
+|     Species Name    | |      Species      | Size    |
+|:----------------------------------------:|:--------:|:-----------------:|:-------:|
+| Podarcis muralis    |  KLC098  | A. septemvittatus | 7.2 GB  |
+
+You will have to obtain these files for your own working environment. The raw *Aspidoscelis* reads are available on the CHPC lonepeak cluster here:
+
+```
+/scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_data
+```
+
+You should copy all of the files into a scratch directory of your own that uses your uNID. For example, if my uNID was "u0123456" I would do the following:
+
+```
+cd /scratch/general/nfs1/
+mkdir -p u0123456/whiptail_nmt_variation_wd/raw_data
+```
+
+You can then copy the files to your directory. You will need to do this either as a batch submission or using an interactive job. You can copy files in parallel (i.e., using multiple threads) using the shell tool [GNU parallel](https://www.gnu.org/software/parallel/). In order to do this, you need to make sure you specify the number of processors you plan to use (your processors will be able to perform tasks simultaneously, this is known as "in parallel"). If my username was u0123456, I could do the following (either in my batch script or interactive job):
+
+```
+salloc --time=10:00:00 -N 1 -n 12
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_data
+ls *.fq.gz | time parallel -j12 --eta --bar cp {} /scratch/general/nfs1/u0612750/whiptail_nmt_variation_wd/raw_data/
+```
+
 
 
