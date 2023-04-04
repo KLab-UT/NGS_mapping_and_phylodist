@@ -24,7 +24,7 @@ Examining the Nuc-Mt genetic variability between the sexual parental species pro
  "frozen"\*\* 
  genomes 
 of the parthenogenetic species. If no variation is present in Nuc-Mt genes between hybridizing species, then a source other than reduced compatibility between the divergent genomes is responsible for the reduced performance in parthenogens (e.g., intra-genomic interactions). 
-As a first step in this project, we will simply be examining which reference genome is the best to map to. We will make quantitative comparisons to 6 annottated reference genomes: The common wall lizard (*Podarcis muralis*), the aeolian wall lizard (*Podarcis raffonei*), the false girdled lizard (*Hemicordylus capensis*), the eastern fence 
+As a first step in this project, we will simply be examining which reference genome is the best to map to. We will make quantitative comparisons to 6 annottated reference genomes: The common wall lizard (*Podarcis muralis*), the aeolian wall lizard (*Podarcis raffonei*), the sand lizard (*Lacerta agilis*), the false girdled lizard (*Hemicordylus capensis*), the eastern fence lizard (*Sceloporus undulatus*), and the Burmese python (*Python bivittatus*).
 
 ---
 
@@ -32,20 +32,20 @@ As a first step in this project, we will simply be examining which reference gen
 # Starting Files
 We performed paired-end Illumina sequencing for four parental sexual species that are closely related and are all involved in hybridization that has resulted in parthenogenetic lineages: *Aspidoscelis inornatus*, *Aspidoscelis gularis*, *A. marmoratus*, and *A. septemvittatus* (a.k.a. *A. gularis septemvittatus*). Details for the ```.fastq``` files for these species are below:
 
-|                Filename                  | SampleID |      Species      | Size    |
-|:----------------------------------------:|:--------:|:-----------------:|:-------:|
-| KLC098_USD16091388L_HKFJFDSXX_L4_1.fq.gz |  KLC098  | A. septemvittatus | 7.2 GB  |
-| KLC098_USD16091388L_HKFJFDSXX_L4_2.fq.gz |  KLC098  | A. septemvittatus | 7.4 GB  |
-| KLC098_USD16091388L_HKG5MDSXX_L1_1.fq.gz |  KLC098  | A. septemvittatus | 3.1 GB  |
-| KLC098_USD16091388L_HKG5MDSXX_L1_2.fq.gz |  KLC098  | A. septemvittatus | 3.2 GB  |
-| RLK004_USD16091389L_HJNHCDSXX_L3_1.fq.gz |  RLK004  | A. gularis        | 11 GB   |
-| RLK004_USD16091389L_HJNHCDSXX_L3_2.fq.gz |  RLK004  | A. gularis        | 12 GB   |
-| RLK019_USD16091390L_HJMVKDSXX_L3_1.fq.gz |  RLK019  | A. inornatus      | 8.2 GB  |
-| RLK019_USD16091390L_HJMVKDSXX_L3_2.fq.gz |  RLK019  | A. inornatus      | 8.6 GB  |
-| RLK019_USD16091390L_HKG5MDSXX_L1_1.fq.gz |  RLK019  | A. inornatus      | 1.7 GB  |
-| RLK019_USD16091390L_HKG5MDSXX_L1_2.fq.gz |  RLK019  | A. inornatus      | 1.8 GB  |
-| RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz |  RLK034  | A. marmoratus     | 11 GB   |
-| RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz |  RLK034  | A. marmoratus     | 12 GB   |
+|                Filename                  | SampleID |      Species           | Size            |
+|:----------------------------------------:|:--------:|:----------------------:|:---------------:|
+| KLC098_USD16091388L_HKFJFDSXX_L4_1.fq.gz |  KLC098  | A. septemvittatus      | 7.2 GB          |
+| KLC098_USD16091388L_HKFJFDSXX_L4_2.fq.gz |  KLC098  | A. septemvittatus      | 7.4 GB          |
+| KLC098_USD16091388L_HKG5MDSXX_L1_1.fq.gz |  KLC098  | A. septemvittatus      | 3.1 GB          |
+| KLC098_USD16091388L_HKG5MDSXX_L1_2.fq.gz |  KLC098  | A. septemvittatus      | 3.2 GB          |
+| RLK004_USD16091389L_HJNHCDSXX_L3_1.fq.gz |  RLK004  | A. gularis             | 11 GB           |
+| RLK004_USD16091389L_HJNHCDSXX_L3_2.fq.gz |  RLK004  | A. gularis             | 12 GB           |
+| RLK019_USD16091390L_HJMVKDSXX_L3_1.fq.gz |  RLK019  | A. inornatus           | 8.2 GB          |
+| RLK019_USD16091390L_HJMVKDSXX_L3_2.fq.gz |  RLK019  | A. inornatus           | 8.6 GB          |
+| RLK019_USD16091390L_HKG5MDSXX_L1_1.fq.gz |  RLK019  | A. inornatus           | 1.7 GB          |
+| RLK019_USD16091390L_HKG5MDSXX_L1_2.fq.gz |  RLK019  | A. inornatus           | 1.8 GB          |
+| RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz |  RLK034  | A. marmoratus          | 11 GB           |
+| RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz |  RLK034  | A. marmoratus          | 12 GB           |
 
 Because there is no annotated reference genome for Aspidoscelis, we will map the raw data to the annotated genome of a species within the same Superfamily: Lacertoidea. The available reference genomes are as follows:
 
@@ -77,40 +77,54 @@ cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_data
 ls *.fq.gz | time parallel -j12 --eta --bar cp {} /scratch/general/nfs1/u0612750/whiptail_nmt_variation_wd/raw_data/
 ```
 
-You will then copy the annotated reference files from Genbank to your working directory using the (NCBI FTP)[https://ftp.ncbi.nlm.nih.gov/genomes/] with the ```rsync``` command. If my username was u0123456, I would do the following (either in my batch script or interactive job):
+You will then copy the annotated reference files from Genbank to your working directory using the (NCBI FTP)[https://ftp.ncbi.nlm.nih.gov/genomes/] with the ```rsync``` command. If my username was u0123456, I could do the following (either in my batch script or interactive job):
 
 ```
 # Move into the working directory and create a directory for the Reference
 cd /scratch/general/nfs1/u0612750/whiptail_nmt_variation_wd
 mkdir -p references
 cd references
-# Copy over the reference fasta and annotation files
-## -- Podarcis muralis
+```
+
+Then you can copy the reference genome you plan to use. For this project, we will be examining read mapping success with three reference genomes:
+
+1. Podarcis muralis
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_muralis/latest_assembly_versions/GCF_004329235.1_PodMur_1.0/GCF_004329235.1_PodMur_1.0_genomic.fna.gz .
 ### --- annotation
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_muralis/latest_assembly_versions/GCF_004329235.1_PodMur_1.0/GCF_004329235.1_PodMur_1.0_genomic.gff.gz .
-## -- Podarcis raffonei
+```
+2. Podarcis raffonei
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_raffonei/latest_assembly_versions/GCF_027172205.1_rPodRaf1.pri/GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz .
 ### --- annotation
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_raffonei/latest_assembly_versions/GCF_027172205.1_rPodRaf1.pri/GCF_027172205.1_rPodRaf1.pri_genomic.gff.gz .
-## -- Lacerta agilis
+```
+3. Lacerta agilis
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Lacerta_agilis/latest_assembly_versions/GCF_009819535.1_rLacAgi1.pri/GCF_009819535.1_rLacAgi1.pri_genomic.fna.gz
 ### --- annotation
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Lacerta_agilis/latest_assembly_versions/GCF_009819535.1_rLacAgi1.pri/GCF_009819535.1_rLacAgi1.pri_genomic.gff.gz .
-## -- Hemicordylus capensis
+```
+4. Hemicordylus capensis
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Hemicordylus_capensis/latest_assembly_versions/GCF_027244095.1_rHemCap1.1.pri/GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz .
 ### --- annotation
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Hemicordylus_capensis/latest_assembly_versions/GCF_027244095.1_rHemCap1.1.pri/GCF_027244095.1_rHemCap1.1.pri_genomic.gff.gz .
-## -- Sceloporus undulatus
+```
+5. Sceloporus undulatus
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Sceloporus_undulatus/latest_assembly_versions/GCF_019175285.1_SceUnd_v1.1/GCF_019175285.1_SceUnd_v1.1_genomic.fna.gz .
 ### --- annotation
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Sceloporus_undulatus/latest_assembly_versions/GCF_019175285.1_SceUnd_v1.1/GCF_019175285.1_SceUnd_v1.1_genomic.gff.gz .
-## -- Python bivittatus
+```
+6. Python bivittatus
+```
 ### --- fasta
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Python_bivittatus/latest_assembly_versions/GCF_000186305.1_Python_molurus_bivittatus-5.0.2/GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.fna.gz .
 ### --- annotation
