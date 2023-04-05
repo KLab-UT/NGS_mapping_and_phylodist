@@ -13,9 +13,11 @@ Scripts used to examine the amount of genetic variation in nuclear-encoded mitoc
 
 # <a name="background"></a>
 # Background
+
+
 Parthenogenetic whiptail lizards have been shown to have lower endurance capacity 
 ([Cullum, 1997](https://www.journals.uchicago.edu/doi/abs/10.1086/286055?casa_token=q8DOEvxRkccAAAAA:nmq4l99bzJ7XY8vxokdkj0eRg6816F4_zQ9VSFx7sstxB_qBfty9GAPVe1uUGPgpuMU7CZL4ySIZ); [Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt))
- and mitochondrial respiration ([Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt)). 
+ and mitochondrial respiration ([Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt)) compared to closely related sexual species. 
 
  We hypothesize that lower endurance and mitochondrial respiration in these lizards is a result of reduced genetic compatibility in Nuc-Mt\* genes due to either 
  (A) inter-genomic interactions or (B) intra-genomic interactions. Inter- and intra- prefixes are in reference to the parental genomes of the parthenogenetic whiptails, which are of hybrid origin (i.e., the crossing of two divergent species resulted in the new evolutionary lineage of the parthenogenetic species). Inter-genomic refers to interactions between parental genomes (between gene products of maternal ancestry and gene products of paternal ancestry) and intra-genomic refers to interactions within a parental genome (e.g., between nuclear gene products of maternal ancestry and mitochondrial gene products of maternal ancestry). 
@@ -47,12 +49,6 @@ We performed paired-end Illumina sequencing for four parental sexual species tha
 | RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz |  RLK034  | A. marmoratus          | 11 GB           |
 | RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz |  RLK034  | A. marmoratus          | 12 GB           |
 
-Because there is no annotated reference genome for Aspidoscelis, we will map the raw data to the annotated genome of a species within the same Superfamily: Lacertoidea. The available reference genomes are as follows:
-
-|     Species Name    | |      Species      | Size    |
-|:----------------------------------------:|:--------:|:-----------------:|:-------:|
-| Podarcis muralis    |  KLC098  | A. septemvittatus | 7.2 GB  |
-
 You will have to obtain these files for your own working environment. The raw *Aspidoscelis* reads are available on the CHPC lonepeak cluster here:
 
 ```
@@ -76,8 +72,7 @@ cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/raw_data
 # Copy the genomic files in parallel to my working directory
 ls *.fq.gz | time parallel -j12 --eta --bar cp {} /scratch/general/nfs1/u0612750/whiptail_nmt_variation_wd/raw_data/
 ```
-
-You will then copy the annotated reference files from Genbank to your working directory using the (NCBI FTP)[https://ftp.ncbi.nlm.nih.gov/genomes/] with the ```rsync``` command. If my username was u0123456, I could do the following (either in my batch script or interactive job):
+Because there is no annotated reference genome for Aspidoscelis, we will map the raw data to the annotated genomes of species with varying levels of relatedness. You will copy the annotated reference files from Genbank to your working directory using the (NCBI FTP)[https://ftp.ncbi.nlm.nih.gov/genomes/] with the ```rsync``` command. If my username was u0123456, I could do the following (either in my batch script or interactive job):
 
 ```
 # Move into the working directory and create a directory for the Reference
@@ -131,7 +126,15 @@ rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Python_bivittatus/latest_assembly_versions/GCF_000186305.1_Python_molurus_bivittatus-5.0.2/GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.gff.gz .
 ```
 
+## BIOL 4310 Project
+As a class, we will create a pipeline that contains quality check, read cleaning, mapping, and analysis steps. Responsibility for the coding for these steps was randomly assigned and are as follows:
 
+- Quality checking steps: Seun
+- Read cleaning step: Candice
+- Read mapping step: Dante
+- Analysis: Everyone
+
+You will each contribute to the pipeline contained within the bash file ```fastq_2_bam.sh```. Your sections are marked by comments- you should only add code to your respective section (this way we can avoid merge conflicts). We will work on sections that require everyone's input in class. IF you would like to move forward, you should make a copy of the ```fastq_2_bam.sh``` file that you can use to create your own pipeline. I encourage this! It will allow you to work on all of the pieces together. However, for the official ```fastq_2_bam.sh``` file you should only add code to your assigned section.
 
 
 
