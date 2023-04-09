@@ -1,0 +1,6 @@
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_muralis/latest_assembly_versions/GCF_004329235.1_PodMur_1.0
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_raffonei/latest_assembly_versions/GCF_027172205.1_rPodRaf1.pri
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Lacerta_agilis/latest_assembly_versions/GCF_009819535.1_rLacAgi1.pri
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Hemicordylus_capensis/latest_assembly_versions/GCF_027244095.1_rHemCap1.1.pri
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Sceloporus_undulatus/latest_assembly_versions/GCF_019175285.1_SceUnd_v1.1
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Python_bivittatus/latest_assembly_versions/GCF_000186305.1_Python_molurus_bivittatus-5.0.2
