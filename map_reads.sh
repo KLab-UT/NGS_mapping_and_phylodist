@@ -59,24 +59,10 @@ echo "Aligning reads with reference with bwa mem."
 echo ""
 
 cd ${d}
-while read sample; do 
-	do bwa mem ${sample} > ${d}/mapped_reads/${sample}_mapped.sam
-	samtools sort ${d}/mapped_reads/${sample}_mapped.sam > ${d}/mapped_reads/${sample}_sorted.bam
+while read cleaned_file; do 
+	do bwa mem ${cleaned_file} > ${d}/mapped_reads/${cleaned_file}_mapped.sam
+	samtools sort ${d}/mapped_reads/${cleaned_file}_mapped.sam > ${d}/mapped_reads/${cleaned_file}_sorted.bam
 done<${i}
-
-# i is cleaned list
-
-#function align_reads {
-#	cd 
-#	ls *_cleaned.fastq.gz | awk -F'[._]' '{print $1}' | sort > cleaned_list
-#	while read sample; do bwa mem ${d}/${p}/${r} ${sample}_cleaned.fastq.gz > ${d}/$1/mapped_reads/${sample}_mapped.sam
-#		samtools sort ${d}/$1/mapped_reads/${sample}_mapped.sam > ${d}/$1/mapped_reads/${sample}_sorted.bam -@ ${t}
-#	done<cleaned_list
-#	cd ..
-#}
-
-#align_reads Illumina
-#align_reads Nanopore
 
 module unload bwa/2020_03_19
 module unload samtools/1.16
@@ -95,5 +81,5 @@ mmem=`free | grep Mem | awk '{print $3/$2 * 100.0}'`
 echo "$mdate | $mcpu | $mmem" >> ./stats-cpu
 ###############################################################
 #
-} | tee logfile
+| tee logfile
 }
