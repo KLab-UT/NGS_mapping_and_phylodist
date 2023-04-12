@@ -1,7 +1,7 @@
 #!bin/bash
 
 {
-usage="$(basename "$0") [-h] [-i directory for input files] [-g reference genome file] [-o output file where mapped reads go] [-t 
+usage="$(basename "$0") [-h] [-i directory for input files] [-g reference genome file] [-o output file where mapped reads go] [-t number of threds]
 This program will map reads onto the reference directory
 	-h show help text
 	-i directory name where input files are located
@@ -63,7 +63,7 @@ ls *fq.gz | cut -d '.' -f '1' > cleaned_reads.txt
 
 while read sample; do 
 	bwa mem ${sample}.fq.gz > ${o}/${sample}_mapped.sam
-	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam
+	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam -@ ${t}
 done<cleaned_reads.txt
 
 module unload bwa/2020_03_19
