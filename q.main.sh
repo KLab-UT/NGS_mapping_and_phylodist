@@ -10,6 +10,8 @@
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 mkdir -p $wd/cleaned_reads
+mkdir -p $wd/cleaned_reads/merged_reads
+mkdir -p $wd/cleaned_reads/unmerged_reads
 mkdir -p $wd/references
 mkdir -p $wd/mapped_reads/pm
 mkdir -p $wd/mapped_reads/pr
