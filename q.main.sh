@@ -38,8 +38,8 @@ bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Podarcis_muralis.fna -o
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Podarcis_raffonei.fna -o $wd/mapped_reads/pr/ -t 10
 
 ## Dante
-bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
 
 ## Seun
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
