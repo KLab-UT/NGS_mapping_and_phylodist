@@ -50,11 +50,11 @@ ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq > fastq_list.txt
 while read sample; do 
 	fastp 	-w ${t} \
 		-i ${sample}_1.fq.gz -I ${sample}_2.fq.gz \
-		-m --merged_out ${o}/merged_reads/"$sample"_merged.fq / --out1 ${o}/unmerged_reads/"$sample"_unmerged1.fq --out2 ${o}/unmerged_reads/"$sample"_unmerged2.fq \
+		-m --merged_out ${o}/merged_reads/"$sample".merged.fq / --out1 ${o}/unmerged_reads/"$sample".unmerged1.fq --out2 ${o}/unmerged_reads/"$sample".unmerged2.fq \
 
 cd ../cleaned_reads/merged_reads
 gzip "$sample".merged.fq
-cd ../cleaned_reads/unmerged_reads
+cd ../unmerged_reads
 gzip "$sample".unmerged1.fq
 gzip "$sample".unmerged2.fq
 
