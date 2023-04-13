@@ -66,6 +66,7 @@ while read sample; do
 	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam -@ ${t}
 done<cleaned_reads.txt
 
+
 module unload bwa/2020_03_19
 module unload samtools/1.16
 
