@@ -18,24 +18,24 @@ mkdir -p $wd/mapped_reads/su
 mkdir -p $wd/mapped_reads/la
 mkdir -p $wd/mapped_reads/pb
 
-# download reference genomes
+# download reference genomes: Randy
 bash get_refs.sh -d $wd/references -l ref_list.txt
 
-# check read quality of raw reads
+# check read quality of raw reads: Seun
 bash check_qc.sh -i $wd/raw_reads -t 10
 
-# clean reads
+# clean reads: Candice
 bash clean_reads.sh -i $wd/raw_reads -o $wd/cleaned_reads -t 10
 
-# check read quality of cleaned reads
+# check read quality of cleaned reads: Seun
 bash check_qc.sh -i $wd/cleaned_reads -t 10
 
-# map cleaned reads to reference
-## Candice
+# map cleaned reads to reference: Dante
+## Dante
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Podarcis_muralis.fna -o $wd/mapped_reads/pm/ -t 10
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Podarcis_raffonei.fna -o $wd/mapped_reads/pr/ -t 10
 
-## Dante
+## Candice
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
 
