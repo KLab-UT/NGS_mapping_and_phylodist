@@ -10,6 +10,8 @@
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 mkdir -p $wd/cleaned_reads
+mkdir -p $wd/cleaned_reads/merged_reads
+mkdir -p $wd/cleaned_reads/unmerged_reads
 mkdir -p $wd/references
 mkdir -p $wd/mapped_reads/pm
 mkdir -p $wd/mapped_reads/pr
@@ -40,8 +42,8 @@ bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Hemicordylus_capensis.f
 bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
 
 ## Seun
-bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads -r $wd/references/Lacerta_agilis.fna -o $wd/mapped_reads/la/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Lacerta_agilis.fna -o $wd/mapped_reads/la/ -t 10
 
 # examine mapping results
 bash mapping_analysis.sh -i $wd/mapped_reads -l $wd/mapped_reads/ref_species_list.txt -t 10
