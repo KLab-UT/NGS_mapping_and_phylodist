@@ -20,30 +20,30 @@ mkdir -p $wd/mapped_reads/su
 mkdir -p $wd/mapped_reads/la
 mkdir -p $wd/mapped_reads/pb
 
-# download reference genomes
+# download reference genomes: Randy
 bash get_refs.sh -d $wd/references -l ref_list.txt
 
-# check read quality of raw reads
+# check read quality of raw reads: Seun
 bash check_qc.sh -i $wd/raw_reads -t 10
 
-# clean reads
+# clean reads: Candice
 bash clean_reads.sh -i $wd/raw_reads -o $wd/cleaned_reads -t 10
 
-# check read quality of cleaned reads
+# check read quality of cleaned reads: Seun
 bash check_qc.sh -i $wd/cleaned_reads -t 10
 
-# map cleaned reads to reference
-## Candice
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Podarcis_muralis.fna -o $wd/mapped_reads/pm/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Podarcis_raffonei.fna -o $wd/mapped_reads/pr/ -t 10
-
+# map cleaned reads to reference: Dante
 ## Dante
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Podarcis_muralis.fna -o $wd/mapped_reads/pm/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Podarcis_raffonei.fna -o $wd/mapped_reads/pr/ -t 10
+
+## Candice
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
 
 ## Seun
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads -g $wd/references/Lacerta_agilis.fna -o $wd/mapped_reads/la/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Lacerta_agilis.fna -o $wd/mapped_reads/la/ -t 10
 
 # examine mapping results
 bash mapping_analysis.sh -i $wd/mapped_reads -l $wd/mapped_reads/ref_species_list.txt -t 10
