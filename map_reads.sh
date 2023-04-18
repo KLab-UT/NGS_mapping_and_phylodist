@@ -15,7 +15,7 @@ while getopts $options option; do
 		i) i=$OPTARG;;
 		g) g=$OPTARG;;
 		o) o=$OPTARG;;
-		t) t=$optarg;;
+		t) t=$OPTARG;;
 		:) printf "missing argument for -%s\n" "$OPTARG" >&2; echo "$usage" >&2; exit 1;;
 		\?) printf "illegal option: -%s\n" "$OPTARG" >&2; echo "$usage" >&2; exit 1;;
 	esac
