@@ -1,5 +1,6 @@
 #!/bin/bash
 
+time parallel -j{}
 {
 usage="$(basename "$0") [-h] [-i <working_directory] [-o <output_directory>]
 This program will trim raw reads.
@@ -46,6 +47,7 @@ echo ""
 function trim_reads {
 cd ${i}
 pwd
+#ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq | time parallel -j${t} --eta --bar "fastp -w 2 -i {}_1.fq.gz -I {}_2.fq.gz -m --merged_out ${o}/merged_reads/{}.merged.fq --out1 ${o}/unmerged_reads/{}.unmerged1.fq --out2 ${o}/unmerged_reads/{}.unmerged2.fq" 
 ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq > fastq_list.txt
 while read sample; do 
 	fastp 	-w ${t} \
