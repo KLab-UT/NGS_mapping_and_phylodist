@@ -61,12 +61,9 @@ echo ""
 #make file of file names the run through then
 cd ${i}
 #ls *fq.gz | cut -d '.' -f '1,2' > cleaned_reads_for_aligning.txt
-touch cleaned_reads_for_aligning.txt
 ls *fq.gz | awk -F'.' '{print $1"."$2}' | sort > cleaned_reads_for_aligning.txt 
 
 while read sample; do
-#	touch ${o}/${sample}_mapped.sam
-#	touch ${o}/${sample}_sorted.bam
 	bwa mem ${g} ${sample}.fq.gz > ${o}/${sample}_mapped.sam
 	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam -@ ${t}
 done<cleaned_reads_for_aligning.txt
