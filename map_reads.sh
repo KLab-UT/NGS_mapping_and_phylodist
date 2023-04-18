@@ -8,7 +8,7 @@ This program will map reads onto the reference directory
 	-g name of reference file
 	-o output file where mapped reads go
 	-t number of threads"
-options=':h:i:r:p:d:'
+options=':h:i:g:o:t:'
 while getopts $options option; do
 	case "$option" in
 		h) echo "$usage"; exit;;
@@ -28,10 +28,11 @@ echo "output file: " $o
 echo "number of threads: " $t
 
 # mandatory arguements
-if [ ! "$i" ] || [ ! "$g" ] || [ ! "$o" ] || [ ! "$t" ]; then
-	echo "arguments -i, -R, -o, and -t  must be provided"
-	echo "$usage" >&2; exit 1
-fi
+
+#if [ ! "$i" ] || [ ! "$g" ] || [ ! "$o" ] || [ ! "$t" ]; then
+#	echo "arguments -i, -g, -o, and -t  must be provided"
+#	echo "$usage" >&2; exit 1
+#fi
 
 # map reads --------------------------------------------------------------------------------
 
@@ -60,10 +61,13 @@ echo ""
 #make file of file names the run through then
 cd ${i}
 #ls *fq.gz | cut -d '.' -f '1,2' > cleaned_reads_for_aligning.txt
-ls *fq.gz | awk -F'[._]' '{print $1$2}' | sort cleaned_reads_for_aligning.txt 
+touch cleaned_reads_for_aligning.txt
+ls *fq.gz | awk -F'.' '{print $1"."$2}' | sort > cleaned_reads_for_aligning.txt 
 
-while read sample; do 
-	bwa mem ${sample}.fq.gz > ${o}/${sample}_mapped.sam
+while read sample; do
+#	touch ${o}/${sample}_mapped.sam
+#	touch ${o}/${sample}_sorted.bam
+	bwa mem ${g} ${sample}.fq.gz > ${o}/${sample}_mapped.sam
 	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam -@ ${t}
 done<cleaned_reads_for_aligning.txt
 
