@@ -32,14 +32,17 @@ fi
 wd=$(pwd)
 
 # download reference genomes
-function download_ref {
+function download_refs {
 	cd ${d}
 	while read ref; do
 		id=$( echo "$ref" | cut -d '/' -f 7 )
-		genome_file="${id}_genome.fna.gz"
-		annotation_file="${id}_genome.gff.gz"
-		rsync --copy-links --times --verbose rsync://"$ref"/genome_file .
-		rsync --copy-links --times --verbose rsync://"$ref"/annotation_file .
+		genome_file="${id}_genomic.fna.gz"
+		annotation_file="${id}_genomic.gff.gz"
+		rsync --copy-links --times --verbose rsync://"$ref"/"$genome_file" .
+		rsync --copy-links --times --verbose rsync://"$ref"/"$annotation_file" .
 	done<${wd}/${l}
+}
 
+download_refs
 
+}

@@ -33,17 +33,12 @@ bash clean_reads.sh -i $wd/raw_reads -o $wd/cleaned_reads -t 10
 bash check_qc.sh -i $wd/cleaned_reads -t 10
 
 # map cleaned reads to reference: Dante
-## Dante
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Podarcis_muralis.fna -o $wd/mapped_reads/pm/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Podarcis_raffonei.fna -o $wd/mapped_reads/pr/ -t 10
-
-## Candice
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Hemicordylus_capensis.fna -o $wd/mapped_reads/hc/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Sceloporus_undulatus.fna -o $wd/mapped_reads/su/ -t 10
-
-## Seun
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Python_bivittatus.fna -o $wd/mapped_reads/pb/ -t 10
-bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/Lacerta_agilis.fna -o $wd/mapped_reads/la/ -t 10
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_004329235.1_PodMur_1.0_genomic.gff.gz -o $wd/mapped_reads/pm/ -t 24
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_027172205.1_rPodRaf1.pri_genomic.gff.gz -o $wd/mapped_reads/pr/ -t 24
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz -o $wd/mapped_reads/hc/ -t 24
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_019175285.1_SceUnd_v1.1_genomic.fna.gz -o $wd/mapped_reads/su/ -t 24
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.fna.gz -o $wd/mapped_reads/pb/ -t 24
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_009819535.1_rLacAgi1.pri_genomic.fna.gz -o $wd/mapped_reads/la/ -t 24
 
 # examine mapping results
 bash mapping_analysis.sh -i $wd/mapped_reads -l $wd/mapped_reads/ref_species_list.txt -t 10

@@ -5,9 +5,9 @@ usage="$(basename "$0") [-h] [-i directory for input files] [-g reference genome
 This program will map reads onto the reference directory
 	-h show help text
 	-i directory name where input files are located
-	-g name of reference file
+	-g path and name of reference file
 	-o output file where mapped reads go
-	-t number of threads"
+	-t number of threads (WARNING: bwa is set to use 4 threads per sample)"
 options=':h:i:g:o:t:'
 while getopts $options option; do
 	case "$option" in
@@ -44,29 +44,30 @@ module load bwa/2020_03_19
 
 echo "Indexing Reference"
 echo ""
+cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/references
 bwa index ${g}
 
 module unload bwa/2020_03_19
 
 ###########################################################################################
-# Aligning datasets againts reference with minimap #
+# Aligning datasets againts reference with bwa mem #
 ###########################################################################################
 
 module load bwa/2020_03_19
 module load samtools/1.16
 
+# Create function that runs bwa and converts sam to bam
+# Include below line in fastqToBam
+#bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
+fastqToBam() {
+  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 4
+}
+export -f fastqToBam
+
 echo "Aligning reads with reference with bwa mem."
-echo ""
-
-#make file of file names the run through then
-cd ${i}
-#ls *fq.gz | cut -d '.' -f '1,2' > cleaned_reads_for_aligning.txt
-ls *fq.gz | awk -F'.' '{print $1"."$2}' | sort > cleaned_reads_for_aligning.txt 
-
-while read sample; do
-	bwa mem ${g} ${sample}.fq.gz > ${o}/${sample}_mapped.sam
-	samtools sort ${o}/${sample}_mapped.sam > ${o}/${sample}_sorted.bam -@ ${t}
-done<cleaned_reads_for_aligning.txt
+cd $i
+ls *fq.gz | cut -d "." -f "1,2" | parallel fastqToBam {} $g $o
+	
 
 
 module unload bwa/2020_03_19

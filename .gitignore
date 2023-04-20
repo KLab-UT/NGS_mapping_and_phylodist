@@ -1,4 +1,7 @@
 slurm-5866326.err-lp058
 slurm-5866326.out-lp058
+slurm*
+q.main_*
+mapping_tmp.sh
 reads.sh
 outfile
