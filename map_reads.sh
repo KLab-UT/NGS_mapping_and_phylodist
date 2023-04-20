@@ -58,8 +58,8 @@ module load samtools/1.16
 
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
-#bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
 fastqToBam() {
+  bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
   samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 4
 }
 export -f fastqToBam
