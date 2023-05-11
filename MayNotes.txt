@@ -1,0 +1,18 @@
+1. Double check all of the mapped reads to make sure they mapped to the right genome!
+grep ^@PG KLC098_USD16091388L_HKFJFDSXX_L4.merged.sam
+
+2. Map merged reads to reference for Aspidoscelis marmoratus (unnanotated) genome
+- Randy will work on getting genome onto lonepeak scratch
+- This has already been done for all the others
+
+3. Map unmerged reads to reference genomes
+bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
+
+4. Get number of unmerged reads from fastp for each species
+a. Count number of unmerged for read1, then count number of unmerged for read2
+
+5. Get percentage of merged reads that mapped to each reference
+
+6. Get percentage of unmerged reads that mapped to each reference
+
+7. Look at mapping success between species to the A. marmoratus genome
