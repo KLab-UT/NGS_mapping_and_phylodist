@@ -1,3 +1,4 @@
+ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Aspidoscelis_marmoratus/latest_assembly_versions/GCA_014337955.1_AspMar1.0
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_muralis/latest_assembly_versions/GCF_004329235.1_PodMur_1.0
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Podarcis_raffonei/latest_assembly_versions/GCF_027172205.1_rPodRaf1.pri
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Lacerta_agilis/latest_assembly_versions/GCF_009819535.1_rLacAgi1.pri
