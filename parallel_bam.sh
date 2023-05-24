@@ -27,7 +27,7 @@ module load samtools/1.16
 
 depth() {
 	samtools depth -a ${1}.bam | awk '{sum+=$3} END { print "Average = ",sum/NR}' > "$2"/${1}.depth.txt
-      	#samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 4
+
 }
 export -f depth
 
