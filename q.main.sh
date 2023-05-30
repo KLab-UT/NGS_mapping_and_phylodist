@@ -13,6 +13,7 @@ mkdir -p $wd/cleaned_reads
 mkdir -p $wd/cleaned_reads/merged_reads
 mkdir -p $wd/cleaned_reads/unmerged_reads
 mkdir -p $wd/references
+mkdir -p $wd/mapped_reads/am
 mkdir -p $wd/mapped_reads/pm
 mkdir -p $wd/mapped_reads/pr
 mkdir -p $wd/mapped_reads/hc
@@ -33,6 +34,7 @@ bash clean_reads.sh -i $wd/raw_reads -o $wd/cleaned_reads -t 10
 bash check_qc.sh -i $wd/cleaned_reads -t 10
 
 # map cleaned reads to reference: Dante
+bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCA_014337955.1_AspMar1.0_genomic.fna.gz -o $wd/mapped_reads/am -t 24
 bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_004329235.1_PodMur_1.0_genomic.gff.gz -o $wd/mapped_reads/pm/ -t 24
 bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_027172205.1_rPodRaf1.pri_genomic.gff.gz -o $wd/mapped_reads/pr/ -t 24
 bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz -o $wd/mapped_reads/hc/ -t 24
