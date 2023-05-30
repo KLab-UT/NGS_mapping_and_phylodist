@@ -32,6 +32,8 @@ fi
 #Get number of unmerged reads from fastp for each species
 #a. Count number of unmerged for read1, then count number of unmerged for read2
 
+cd $i
+
 #A. septemvittatus 
     #KLC098_USD16091388L_HKFJFDSXX_L4_1.fq.gz
     #KLC098_USD16091388L_HKFJFDSXX_L4_2.fq.gz
@@ -39,20 +41,26 @@ fi
     #KLC098_USD16091388L_HKG5MDSXX_L1_2.fq.gz
 
 #whole species read count
-zcat KLC098*fq.gz | wc -l
+zcat KLC098*fq.gz | wc -l >> A.septemvittatus_count.txt
 
 #read1 count 
-ls KLC098*fq.gz | cut -d "." -f "1,2,3,4" | 
+zcat KLC098*.fq.gz read1.txt | wc -l >> A.septemvittatus_count.txt
 
+#read2 count
+zcat KLC098*.fq.gz read2.txt | wc -l >> A.septemvittatus_count.txt
 
 # A. gularis
     #RLK004_USD16091389L_HJNHCDSXX_L3_1.fq.gz
     #RLK004_USD16091389L_HJNHCDSXX_L3_2.fq.gz
 
 #whole species read count
-zcat RLK004*fq.gz | wc -l
+zcat RLK004*fq.gz | wc -l >> A.gularis_count.txt
 
+#read1 count
+zcat RLK004*.fq.gz read1.txt | wc -l >> A.gularis_count.txt
 
+#read2 count
+zcat RLK004*.fq.gz read2.txt | wc -l >> A.gularis_count.txt
 
 # A. inornatus
     #RLK019_USD16091390L_HJMVKDSXX_L3_1.fq.gz
@@ -61,16 +69,24 @@ zcat RLK004*fq.gz | wc -l
     #RLK019_USD16091390L_HKG5MDSXX_L1_2.fq.gz
 
 #whole species read count
-zcat RLK019*fq.gz | wc -l
+zcat RLK019*fq.gz | wc -l >> A.inornatus_count.txt
 
+#read1 count
+zcat RLK019*.fq.gz read1.txt | wc -l >> A.inornatus_count.txt
 
+#read2 count
+zcat RLK019*.fq.gz read2.txt | wc -l >> A.inornatus_count.txt
 
 # A. marmoratus
     #RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz
     #RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz
 
 #whole species read count
-zcat RLK034*fq.gz | wc -l
+zcat RLK034*fq.gz | wc -l >> A.marmoratus_count.txt
 
+#read1 count
+zcat RLK034*.fq.gz read1.txt | wc -l >> A.marmoratus_count.txt
 
-} | tee outfile
+#read2 count
+zcat RLK034*.fq.gz read2.txt | wc -l >> A.marmoratus_count.txt
+} | tee outfile 
