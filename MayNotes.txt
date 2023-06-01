@@ -1,18 +1,73 @@
 1. Double check all of the mapped reads to make sure they mapped to the right genome!
-grep ^@PG KLC098_USD16091388L_HKFJFDSXX_L4.merged.sam
+  grep ^@PG KLC098_USD16091388L_HKFJFDSXX_L4.merged.sam
 
 2. Map merged reads to reference for Aspidoscelis marmoratus (unnanotated) genome
-- Randy will work on getting genome onto lonepeak scratch
-- This has already been done for all the others
+  - Randy will work on getting genome onto lonepeak scratch
+  - This has already been done for all the others
 
 3. Map unmerged reads to reference genomes
-bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
+  bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
 
 4. Get number of unmerged reads from fastp for each species
-a. Count number of unmerged for read1, then count number of unmerged for read2
+  a. Count number of unmerged for read1, then count number of unmerged for read2
 
-5. Get percentage of merged reads that mapped to each reference
+5. Merge "merged" .bam files for individuals that were spread accross multiple lanes
+  - example code where KLC098_am_merged.bam is the new merged .bam file for the merged reads that were mapped to the am genome
+    samtools merge KLC098_am_merged.bam KLC098_USD16091388L_HKFJFDSXX_L4.merged_sorted.bam KLC098_USD16091388L_HKG5MDSXX_L1.merged_sorted.bam
+  - example code where RLK019_am_merged.bam is the new merged .bam file for the merged reads that were mapped to the am genome
+    samtools merge RLK019_am_merged.bam RLK019_USD16091390L_HJMVKDSXX_L3.merged_sorted.bam RLK019_USD16091390L_HKG5MDSXX_L1.merged_sorted.bam
+  - This only needs to be done for KLC098 and RLK019
+  
+6. Change the name of the "merged" .bam file for individuals that were sequenced on a single lane
+  - example code where RLK004_am_merged.bam is the new merged .bam file for the merged reads that were mapped to the am genome
+    mv RLK004_USD16091389L_HJNHCDSXX_L3.merged_sorted.bam RLK004_am_merged.bam
+  - example code where RLK034_am_merged.bam is the new merged .bam file for the merged reads that were mapped to the am genome
+    mv RLK034_USD16091387L_HJNHCDSXX_L2.merged.sam RLK034_am_merged.bam
+  - This only needs to be done for RLK004 and RLK034
+  
+7. Merge "unmerged" .bam files for individuals that were spread accross multiple lanes
+  - example code where KLC098_am_merged.bam is the new merged .bam file for the unmerged reads that were mapped to the am genome
+    samtools merge KLC098_am_unmerged.bam KLC098_USD16091388L_HKFJFDSXX_L4.unmerged_sorted.bam KLC098_USD16091388L_HKG5MDSXX_L1.unmerged_sorted.bam
+  - example code where RLK019_am_unmerged.bam is the new merged .bam file for the unmerged reads that were mapped to the am genome
+    samtools merge RLK019_am_unmerged.bam RLK019_USD16091390L_HJMVKDSXX_L3.unmerged_sorted.bam RLK019_USD16091390L_HKG5MDSXX_L1.unmerged_sorted.bam
+  - This only needs to be done for KLC098 and RLK019
 
-6. Get percentage of unmerged reads that mapped to each reference
+8. Change the name of the "unmerged" .bam file for individuals that were sequenced on a single lane
+  - example code where RLK004_am_unmerged.bam is the new merged .bam file for the unmerged reads that were mapped to the am genome
+    mv RLK004_USD16091389L_HJNHCDSXX_L3.unmerged_sorted.bam RLK004_am_unmerged.bam
+  - example code where RLK034_am_unmerged.bam is the new merged .bam file for the unmerged reads that were mapped to the am genome
+    mv RLK034_USD16091387L_HJNHCDSXX_L2.unmerged.sam RLK034_am_unmerged.bam
+  - This only needs to be done for RLK004 and RLK034
 
-7. Look at mapping success between species to the A. marmoratus genome
+9. Get percentage of merged reads that mapped to each reference
+  a. Get number of total reads for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>_merged.bam
+    - samtools view -c <sample_id>_<reference_abbreviation>_merged.bam # do this for each *_merged.bam file
+  b. Get number of total reads that mapped for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>_merged.bam
+    - samtools view -c -F 260 <sample_id>_<reference_abbreviation>_merged.bam # do this for each *_merged.bam file
+  c. Then divide the number of merged reads that mapped (from part b) / the total number of merged reads (from part a)
+  
+10. Get average depth for the .bam file of the merged reads for each individual
+
+11. Get percentage of unmerged reads that mapped to each reference
+  a. Get number of total reads for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>_unmerged.bam
+    - samtools view -c <sample_id>_<reference_abbreviation>_unmerged.bam # do this for each *_unmerged.bam file
+  b. Get number of total reads that mapped for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>_unmerged.bam
+    - samtools view -c -F 260 <sample_id>_<reference_abbreviation>_unmerged.bam # do this for each *_unmerged.bam file
+  c. Then divide the number of unmerged reads that mapped (from part b) / the total number of unmerged reads (from part a)
+  
+12. Get average depth for the .bam file of the unmerged reads for each individual
+  
+13. Merge "unmerged" and "merged" .bam files into a single file for each individual
+  - example code where KLC098_am.bam is the new merged .bam file for all reads
+  samtools merge KLC098_am.bam KLC098_am_merged.bam KLC098_am_unmerged.bam # do this for each individual
+  
+14. Get percentage of all reads (merged & unmerged) that mapped to each reference
+  a. Get number of total reads for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>.bam
+    - samtools view -c <sample_id>_<reference_abbreviation>.bam # do this for each individual
+  b. Get number of total reads that mapped for each individual to each reference genome from mapped_reads/<reference_abbreviation>/<sample_id>_<reference_abbreviation>.bam
+    - samtools view -c -F 260 <sample_id>_<reference_abbreviation>.bam # do this for each individual
+  c. Then divide the number of reads that mapped (from part b) / the total number of reads (from part a
+  
+15. Get average depth for the .bam file of the unmerged reads for each individual
+
+Later: Look at mapping success between species to the A. marmoratus genome
