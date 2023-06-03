@@ -41,15 +41,15 @@ cd $i
     #KLC098_USD16091388L_HKG5MDSXX_L1_2.fq.gz
 
 #whole species read count
-"KLC098 A.septemvittatus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
-$(zcat KLC098*unmerged[12].fq.gz | wc -l)/4|bc >> $o unmerged_read_count.txt
+echo "KLC098 A.septemvittatus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
+$($(zcat KLC098*unmerged[12].fq.gz | wc -l) + $(zcat KLC098*unmerged[12].fq.gz | wc -l))/4|bc >> $o/unmerged_read_count.txt
 
 #read1 count
-"KLC098 read_1 count" >> unmerged_read_count.txt
+echo "KLC098 read_1 count" >> unmerged_read_count.txt
 $(zcat KLC098*unmerged1.fq.gz read1.txt | wc -l)4|bc >> $o unmerged_read_count.txt
 
 #read2 count
-"KLC098 read_1 count" >> unmerged_read_count.txt
+echo "KLC098 read_1 count" >> unmerged_read_count.txt
 $(zcat KLC098*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o unmerged_read_count.txt
 
 # A. gularis
@@ -58,15 +58,15 @@ $(zcat KLC098*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o unmerged_read_count.t
 
 
 #whole species read count
-"RLK004 A.gularis total read count (read1_count + read2_count)" >> unmerged_read_count.txt
-$(zcat RLK004*unmerged[12].fq.gz | wc -l)/4|bc >> $o/unmerged_read_count.txt
+echo "RLK004 A.gularis total read count (read1_count + read2_count)" >> unmerged_read_count.txt
+$($(zcat RLK004*unmerged[12].fq.gz | wc -l) + $(zcat RLK004*unmerged[12].fq.gz | wc -l))/4|bc >> $o/unmerged_read_count.txt
 
 #read1 count
-"RLK004 read_1 count" >> unmerged_read_count.txt
+echo "RLK004 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK004*unmerged1.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 #read2 count
-"RLK004 read_1 count" >> unmerged_read_count.txt
+echo "RLK004 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK004*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 # A. inornatus
@@ -76,15 +76,15 @@ $(zcat RLK004*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.t
     #RLK019_USD16091390L_HKG5MDSXX_L1_2.fq.gz
 
 #whole species read count
-"RLK019 A.inornatus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
-$(zcat RLK019*unmerged[12].fq.gz | wc -l)/4|bc >> $o/unmerged_read_count.txt
+echo "RLK019 A.inornatus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
+$($(zcat RLK019*unmerged[12].fq.gz | wc -l) + $(zcat RLK019*unmerged[12].fq.gz | wc -l))/4|bc >> $o/unmerged_read_count.txt
 
 #read1 count
-"RLK019 read_1 count" >> unmerged_read_count.txt
+echo "RLK019 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK019*unmerged1.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 #read2 count
-"RLK019 read_1 count" >> unmerged_read_count.txt
+echo "RLK019 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK019*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 # A. marmoratus
@@ -92,15 +92,15 @@ $(zcat RLK019*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.t
     #RLK034_USD16091387L_HJNHCDSXX_L2_2.fq.gz
 
 #whole species read count
-"RLK034 A.marmoratus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
-$(zcat RLK034*unmerged[12].fq.gz | wc -l)/4|bc >> $o/unmerged_read_count.txt
+echo "RLK034 A.marmoratus total read count (read1_count + read2_count)" >> unmerged_read_count.txt
+$($(zcat RLK034*unmerged[12].fq.gz | wc -l) + $(zcat RLK034*unmerged[12].fq.gz | wc -l))/4|bc >> $o/unmerged_read_count.txt
 
 #read1 count
-"RLK034 read_1 count" >> unmerged_read_count.txt
+echo "RLK034 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK034*unmerged1.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 #read2 count
-"RLK034 read_1 count" >> unmerged_read_count.txt
+echo "RLK034 read_1 count" >> unmerged_read_count.txt
 $(zcat RLK034*unmerged2.fq.gz read1.txt | wc -l)4|bc >> $o/unmerged_read_count.txt
 
 } | tee outfile 
