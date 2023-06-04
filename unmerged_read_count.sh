@@ -44,10 +44,18 @@ cd $i
 zcat KLC098*fq.gz | wc -l >> A.septemvittatus_count.txt
 
 #read1 count 
-zcat KLC098*.fq.gz read1.txt | wc -l >> A.septemvittatus_count.txt
+#zcat KLC098*.fq.gz read1.txt | wc -l >> A.septemvittatus_count.txt
+
+while read -r filename KLC098*.fq.gz; do
+    zcat "$filename" | wc -l >> A.septemvittatus_count.txt
+done < read1.txt
 
 #read2 count
-zcat KLC098*.fq.gz read2.txt | wc -l >> A.septemvittatus_count.txt
+#zcat KLC098*.fq.gz read2.txt | wc -l >> A.septemvittatus_count.txt
+
+while read -r filename KLC098*.fq.gz; do
+    zcat "$filename" | wc -l >> A.septemvittatus_count.txt
+done < read2.txt
 
 # A. gularis
     #RLK004_USD16091389L_HJNHCDSXX_L3_1.fq.gz
@@ -57,10 +65,20 @@ zcat KLC098*.fq.gz read2.txt | wc -l >> A.septemvittatus_count.txt
 zcat RLK004*fq.gz | wc -l >> A.gularis_count.txt
 
 #read1 count
-zcat RLK004*.fq.gz read1.txt | wc -l >> A.gularis_count.txt
+while read -r filename RLK004*.fq.gz; do
+    zcat "$filename" | wc -l >> A.gularis_count.txt
+done < read1.txt
+
+
+#zcat RLK004*.fq.gz read1.txt | wc -l >> A.gularis_count.txt
 
 #read2 count
-zcat RLK004*.fq.gz read2.txt | wc -l >> A.gularis_count.txt
+while read -r filename RLK004*.fq.gz; do
+    zcat "$filename" | wc -l >> A.gularis_count.txt
+done < read2.txt
+
+
+#zcat RLK004*.fq.gz read2.txt | wc -l >> A.gularis_count.txt
 
 # A. inornatus
     #RLK019_USD16091390L_HJMVKDSXX_L3_1.fq.gz
@@ -72,10 +90,18 @@ zcat RLK004*.fq.gz read2.txt | wc -l >> A.gularis_count.txt
 zcat RLK019*fq.gz | wc -l >> A.inornatus_count.txt
 
 #read1 count
-zcat RLK019*.fq.gz read1.txt | wc -l >> A.inornatus_count.txt
+#zcat RLK019*.fq.gz read1.txt | wc -l >> A.inornatus_count.txt
+
+while read -r filename RLK019*.fq.gz; do
+    zcat "$filename" | wc -l >> A.inornatus_count.txt
+done < read1.txt
 
 #read2 count
-zcat RLK019*.fq.gz read2.txt | wc -l >> A.inornatus_count.txt
+#zcat RLK019*.fq.gz read2.txt | wc -l >> A.inornatus_count.txt
+
+while read -r filename RLK019*.fq.gz; do
+    zcat "$filename" | wc -l >> A.inornatus_count.txt
+done < read2.txt
 
 # A. marmoratus
     #RLK034_USD16091387L_HJNHCDSXX_L2_1.fq.gz
@@ -85,8 +111,16 @@ zcat RLK019*.fq.gz read2.txt | wc -l >> A.inornatus_count.txt
 zcat RLK034*fq.gz | wc -l >> A.marmoratus_count.txt
 
 #read1 count
-zcat RLK034*.fq.gz read1.txt | wc -l >> A.marmoratus_count.txt
+#zcat RLK034*.fq.gz read1.txt | wc -l >> A.marmoratus_count.txt
+
+while read -r filename RLK034*.fq.gz; do
+    zcat "$filename" | wc -l >> A.marmoratus_count.txt
+done < read1.txt
 
 #read2 count
-zcat RLK034*.fq.gz read2.txt | wc -l >> A.marmoratus_count.txt
+#zcat RLK034*.fq.gz read2.txt | wc -l >> A.marmoratus_count.txt
+
+while read -r filename RLK034*.fq.gz; do
+    zcat "$filename" | wc -l >> A.marmoratus_count.txt
+done < read2.txt
 } | tee outfile 
