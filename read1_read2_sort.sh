@@ -28,11 +28,11 @@ files=$(ls "$i")
 # Iterate over the files
 for file in $files; do
     # Extract the unmerged number using cut
-    unmerged=$(echo "$file" | cut -d '.' -f 2 )
-
-    if [ "$unmerged" = "unmerged1" ]; then
+    unmerged=$(echo "$file" | cut -d '.' -f "2,3,4" )
+    
+    if [ "$unmerged" = "unmerged1.fq.gz" ]; then
         echo "$file" >> $o/read1.txt
-    elif  [ "$unmerged" = "unmerged2" ]; then
+    elif  [ "$unmerged" = "unmerged2.fq.gz" ]; then
         echo "$file" >> $o/read2.txt
     else
 	echo "neither read1 or read2"
