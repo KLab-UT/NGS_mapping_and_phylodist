@@ -22,8 +22,6 @@ echo "Output directory: " $o
 echo ""
 
 # Directory containing the files
-#directory="/scratch/general/nfs1/utu_4310/whiptail_shared_data/cleaned_reads/unmerged_reads"
-
 # Get a list of files in the directory
 files=$(ls "$i")
 
@@ -34,7 +32,7 @@ for file in $files; do
 
     if [ "$unmerged" = "unmerged1" ]; then
         echo "$file" >> $o/read1.txt
-    elif  [ "$unmerged" = "unmerged1" ]; then
+    elif  [ "$unmerged" = "unmerged2" ]; then
         echo "$file" >> $o/read2.txt
     else
 	echo "neither read1 or read2"
