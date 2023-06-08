@@ -29,8 +29,7 @@ class(squa_pruned)
 library(adephylo)
 ## Two approaches: get pairwise distances between all tips
 pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
-## Then you will need to extract the distances from each reference to each whiptail species
-## OR you can prune the tree to get the comparison you want (and do this for every comparison), example below:
-hc_marm <- drop.tip(squa_pruned,squa_pruned$tip.label[-match(c("Aspidoscelis_marmorata","Hemicordylus_capensis"), squa_pruned$tip.label)])
-hc_marm_dist <- distTips(hc_marm, tips='all', 'patristic')
+# Extract data for each pair of interest
+library('usedist')
+am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
 
