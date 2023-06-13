@@ -19,9 +19,19 @@ species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidos
 # Prune squa
 squa_pruned <- drop.tip(squa,squa$tip.label[-match(species_of_interest, squa$tip.label)])
 
+# Set plot size
+par(mar = c(5, 5, 4, 0) + 0.1)  # Adjust the margin values as needed
+# Make branches longer so text doesn't cover species name
+#plot(squa_pruned, edge.width = 2, xlim = c(100, 1100), ylim = c(-10, 110))
+plot(ladderize(squa_pruned, right = TRUE), edge.width = 2)  # ladderize() makes the branches longer
+# The right = TRUE parameter is used to specify that the branches should be lengthened on the right side of the tree
+#laddersize() isn't working as expected. The main issue is the text boxes change size as I increase the plot size, 
+#so when I make the plot bigger the problem (the text box covering the species name) gets worse.
+
 # Check tree
-plot(squa_pruned)
-edgelabels(squa_pruned$edge.length, bg="black", col="white", font=2)
+plot(squa_pruned, edge.width = 1)
+squa_pruned$edge.length <- round(squa_pruned$edge.length, digits = 2)
+edgelabels(squa_pruned$edge.length, bg="black", col="white", font=2, cex = 0.6, box.lwd = 0, xpad = 5, ypad = 5)
 
 # See tree class (should be 'phylo')
 class(squa_pruned)
