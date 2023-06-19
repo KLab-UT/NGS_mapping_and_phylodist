@@ -11,15 +11,7 @@
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
 
 #mkdir depth
+for reference in */; do
+	bash bam_avg_depth.sh -i $wd/$reference -o $wd/$reference
+done 
 
-bash bam_avg_depth.sh -i $wd/hc -o $wd/hc/depth
-
-bash bam_avg_depth.sh -i $wd/la -o $wd/la/depth
-
-bash bam_avg_depth.sh -i $wd/pb -o $wd/pb/depth
-
-bash bam_avg_depth.sh -i $wd/pm -o $wd/pm/depth
-
-bash bam_avg_depth.sh -i $wd/pr -o $wd/pr/depth
-
-bash bam_avg_depth.sh -i $wd/su -o $wd/su/depth
