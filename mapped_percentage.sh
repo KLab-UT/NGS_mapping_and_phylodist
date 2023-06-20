@@ -29,27 +29,31 @@ cd ${i}
 ls *_${g}_* | cut -d "_" -f "1,2" | uniq > id.txt
 
 for id in $(cat "id.txt"); do
-	echo "${id}" >> ${i}/mapped_percentage.txt
+	echo "${id}" >> ${i}/mapping_percentage.txt
 
 	#merged
 	a=samtools view -c ${id}_merged.bam 
+	echo ${a}
 	b=samtools view -c -F 260 ${id}_merged.bam 
 	echo "Merged Mapped Percentage: " >> ${i}/mapping_percentage.txt
-	${b}/${a} >> ${i}/mapping_percentage.txt
+	#percent= $
+	echo "scale=4; ${b} / ${a}" | bc >> ${i}/mapping_percentage.txt
 	echo " " >> ${i}/mapping_percentage.txt
 
 	#unmerged
 	c=samtools view -c ${id}_unmerged.bam 
 	d=samtools view -c -F 260 ${id}_unmerged.bam 
 	echo "Unmerged Mapped Percentage: " >> ${i}/mapping_percentage.txt
-	${d}/${c} >> ${i}/mapping_percentage.txt
+	echo "scale=4; ${d} / ${c}" | bc >> ${i}/mapping_percentage.txt
 	echo " " >> ${i}/mapping_percentage.txt
 
 	#total
 	e=samtools view -c ${id} 
 	f=samtools view -c -F 260 ${id} 
 	echo "Merged and Unmerged Mapped Percentage: " >> ${i}/mapping_percentage.txt
-	${f}/${e} >> ${i}/mapping_percentage.txt
+	echo "scale=4; ${f} / ${e}" | bc >> ${i}/mapping_percentage.txt
+	echo " " >> ${i}/mapping_percentage.txt
+	echo " " >> ${i}/mapping_percentage.txt
 
 done
 
