@@ -41,5 +41,45 @@ library(adephylo)
 pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
 # Extract data for each pair of interest
 library('usedist')
-am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
 
+# marmoratus ref
+am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
+am_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Aspidoscelis_marmorata")))[1,2]
+am_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Aspidoscelis_marmorata")))[1,2]
+am_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Aspidoscelis_marmorata")))[1,2]
+
+# Hemicordylus capensis ref
+hc_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Hemicordylus_capensis")))[1,2]
+hc_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Hemicordylus_capensis")))[1,2]
+hc_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Hemicordylus_capensis")))[1,2]
+hc_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Hemicordylus_capensis")))[1,2]
+
+# Lacerta agilis ref
+la_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Lacerta_agilis")))[1,2]
+la_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Lacerta_agilis")))[1,2]
+la_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Lacerta_agilis")))[1,2]
+la_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Lacerta_agilis")))[1,2]
+
+# Python bivittatus ref
+pb_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Python_bivittatus")))[1,2]
+pb_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Python_bivittatus")))[1,2]
+pb_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Python_bivittatus")))[1,2]
+pb_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Python_bivittatus")))[1,2]
+
+# Podarcis muralis ref
+pm_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Podarcis_muralis")))[1,2]
+pm_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Podarcis_muralis")))[1,2]
+pm_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Podarcis_muralis")))[1,2]
+pm_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Podarcis_muralis")))[1,2]
+
+# Podarcis raffoneae ref
+pr_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Podarcis_raffoneae")))[1,2]
+pr_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Podarcis_raffoneae")))[1,2]
+pr_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Podarcis_raffoneae")))[1,2]
+pr_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Podarcis_raffoneae")))[1,2]
+
+# Sceloporus undulatus ref
+su_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Sceloporus_undulatus")))[1,2]
+su_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Sceloporus_undulatus")))[1,2]
+su_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Sceloporus_undulatus")))[1,2]
+su_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Sceloporus_undulatus")))[1,2]
