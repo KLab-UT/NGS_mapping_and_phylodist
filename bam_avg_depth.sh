@@ -26,15 +26,30 @@ echo "output file: " $o
 module load samtools/1.16
 
 depth() {
-	samtools depth -a ${1}.bam | awk '{sum+=$3} END { print "Average = ",sum/NR}' > "$2"/${1}.depth.txt
+	#clear file contents
+	> "$2"/depth_percentage.txt
 
+	# get average depth
+	echo ${1} >> "$2"/depth_percentage.txt
+	echo "average depth" >> "$2"/depth_percentage.txt
+	samtools depth -a ${1}.bam | awk '{sum+=$3} END { print "Average = ",sum/NR}' >> "$2"/depth_percentage.txt
+	# get percentage of reads mapped to each reference
+	echo "percentage" >> "$2"/depth_percentage.txt
+	echo "denominator" >> "$2"/depth_percentage.txt
+	denominator=samtools view -c >> "$2"/depth_percentage.txt
+	echo "numerator" >> "$2"/depth_percentage.txt
+	numerator=samtools view -c -F 260 >> "$2"/depth_percentage.txt
+	percentage=$numerator/$denominator
+	echo $percentage >> "$2"/depth_percentage.txt
 }
 export -f depth
 
 echo "Read depth."
 cd $i
-ls *.bam | cut -d "." -f "1,2" | parallel depth {} $o
+# in *.bam '*' is turned into the variable ${1}
+ls *[0-9]_[a-z][a-z].bam | cut -d "." -f "1" | parallel depth {} $o
 
 echo "Done"
 module unload samtools/1.16
 }
+
