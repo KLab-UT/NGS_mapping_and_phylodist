@@ -35,14 +35,11 @@ wd=$(pwd)
 function download_refs {
 	cd ${d}
 	while read ref; do
-		if [ ! -f $ref  ]; then
+	    id=$( echo "$ref" | cut -d '/' -f 7 )
+	    genome_file="${id}_genomic.fna.gz"
+	    if [ ! -f $genome_file  ]; then
 		    echo "File "$ref" doesn't exist. Downloading now."
-		    id=$( echo "$ref" | cut -d '/' -f 7 )
-		    genome_file="${id}_genomic.fna.gz"
-		    # NOTE: the below will not work for the gbff file of the marmoratus, we just did it by hand
-		    annotation_file="${id}_genomic.gff.gz"
 		    rsync --copy-links --times --verbose rsync://"$ref"/"$genome_file" .
-		    rsync --copy-links --times --verbose rsync://"$ref"/"$annotation_file" .
 		else
     		    echo "File exists"
 		fi
