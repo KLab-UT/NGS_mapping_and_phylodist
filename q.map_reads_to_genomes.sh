@@ -42,11 +42,16 @@ mkdir -p $wd/mapped_reads/Tretioscincus_oriximinensis
 
 # map cleaned reads to reference:
 MapReads() {
+	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
+	echo "############################"
+	echo ${1} ${2}
 	bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 27
 	bash map_reads.sh -i $wd/cleaned_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 27
 }
+export -f MapReads
 
 # use references in ref_genome in the MapReads function and run each line in parallel
 # {1} is the directory name and {2} is the file name of the genome reference mathcing that directory
+# grep -v filter out lines starting with #
 grep -v '^#' ref_genomes.txt | parallel --colsep ' ' MapReads {1} {2}
 
