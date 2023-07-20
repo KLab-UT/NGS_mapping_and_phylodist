@@ -44,20 +44,21 @@ module load bwa/2020_03_19
 
 echo "Indexing Reference"
 echo ""
-cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/references
+#cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/references
 bwa index ${g}
 
-module unload bwa/2020_03_19
+#module unload bwa/2020_03_19
 
 ###########################################################################################
 # Aligning datasets againts reference with bwa mem #
 ###########################################################################################
 
-module load bwa/2020_03_19
+#module load bwa/2020_03_19
 module load samtools/1.16
 
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
+# -t threads equal to number of reads
 fastqToBam() {
   bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
   samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 4

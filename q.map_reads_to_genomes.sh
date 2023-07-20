@@ -1,6 +1,7 @@
 #!/bin/sh
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
+#SBATCH --time=72:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=27
 #SBATCH -o slurm-%j.out-%N
@@ -45,8 +46,9 @@ MapReads() {
 	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 	echo "############################"
 	echo ${1} ${2}
-	bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 27
-	bash map_reads.sh -i $wd/cleaned_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 27
+	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
+	bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	bash map_reads.sh -i $wd/cleaned_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
 }
 export -f MapReads
 
