@@ -1,9 +1,9 @@
 #!/bin/sh
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
-#SBATCH --time=72:00:00
+#SBATCH --time=48:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=27
+#SBATCH --ntasks=16
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -55,5 +55,8 @@ export -f MapReads
 # use references in ref_genome in the MapReads function and run each line in parallel
 # {1} is the directory name and {2} is the file name of the genome reference mathcing that directory
 # grep -v filter out lines starting with #
+
+#grep -v '^#' ref_genomes.txt | cut -d " " -f 1,2 | parallel MapReads {1} {2}
 grep -v '^#' ref_genomes.txt | parallel --colsep ' ' MapReads {1} {2}
+
 
