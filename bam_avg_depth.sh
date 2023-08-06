@@ -22,11 +22,15 @@ echo ""
 echo "working directory:  $i"
 echo "output file:  $o"	
 
+if [ ! "$i" ] || [ ! "$o" ]; then
+	echo "arguments -o, and -i  must be provided"
+	echo "$usage" >&2; exit 1
+fi
 
 module load samtools/1.16
 
 # sample_ID, Ref_name, #_of_reads, avg_depth, map_percentage
-echo "sample_ID, Ref_name, #_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
+echo "sample_ID, Ref_name,           #_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
 
 depth() {
 	echo -e "Genome: $1 \nOutput: $2"
@@ -36,8 +40,8 @@ depth() {
 	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${1}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
-	denominator=$(samtools view -c)
-	numerator=$(samtools view -c -F 260)
+	denominator=$(samtools view -c ${1}_merged.bam)
+	numerator=$(samtools view -c -F 260 ${1}_merged.bam)
 	percentage=$numerator/$denominator
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$denominator,$avg_depth,$percentage" >> "$2"/depth_percentage.txt

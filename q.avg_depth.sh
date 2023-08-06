@@ -9,7 +9,7 @@
 
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
-
+cd $wd
 #mkdir depth
 # */ is list of directories in current directory
 for reference in */; do
