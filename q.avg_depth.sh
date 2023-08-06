@@ -9,11 +9,12 @@
 
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
+home=~/Biol_4310/whiptail_nmt_variation
 cd $wd
 #mkdir depth
 # */ is list of directories in current directory
 for reference in */; do
 	# -o is $wd because I want one text file for all reference diretories.
-	bash bam_avg_depth.sh -o $wd -i $wd/$reference
+	bash $home/bam_avg_depth.sh -o $wd -i $wd/$reference
 done 
 
