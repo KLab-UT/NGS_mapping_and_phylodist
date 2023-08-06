@@ -14,6 +14,6 @@ wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
 # */ is list of directories in current directory
 for reference in */; do
 	# -o is $wd because I want one text file for all reference diretories.
-	bash bam_avg_depth.sh -i $wd/$reference -o $wd
+	bash bam_avg_depth.sh -o $wd -i $wd/$reference
 done 
 
