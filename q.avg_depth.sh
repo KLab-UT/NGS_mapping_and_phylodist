@@ -12,6 +12,7 @@ wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
 home=~/Biol_4310/whiptail_nmt_variation
 cd $wd
 #mkdir depth
+echo "#sample_ID, Ref_name, number_of_reads, avg_depth, map_percentage" > depth_percentage.txt
 # */ is list of directories in current directory
 for reference in */; do
 	# -o is $wd because I want one text file for all reference diretories.

@@ -30,19 +30,20 @@ fi
 module load samtools/1.16
 
 # sample_ID, Ref_name, #_of_reads, avg_depth, map_percentage
-echo "sample_ID, Ref_name,           #_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
+# make depth_percentage.txt in sbatch file q.avg_depth.sh
+# echo "#sample_ID, Ref_name,           number_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
 
 depth() {
 	echo -e "Genome: $1 \nOutput: $2"
 	# get average depth
-	avg_depth=$(samtools depth -a ${1}_merged.bam | awk '{sum+=$3} END { print "Average = ",sum/NR}')
+	avg_depth=$(samtools depth -a ${1}_merged.bam | awk '{sum+=$3} END {print sum/NR}')
 	#sepeate sample_ID and Ref_name
 	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${1}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
 	denominator=$(samtools view -c ${1}_merged.bam)
 	numerator=$(samtools view -c -F 260 ${1}_merged.bam)
-	percentage=$numerator/$denominator
+	percentage=$((numerator/denominator))
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$denominator,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
 }
