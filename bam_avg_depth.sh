@@ -43,7 +43,8 @@ depth() {
 	# get percentage of reads mapped to each reference
 	denominator=$(samtools view -c ${1}_merged.bam)
 	numerator=$(samtools view -c -F 260 ${1}_merged.bam)
-	percentage=$((numerator/denominator))
+	#percentage=$((numerator/denominator))
+	percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$denominator,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
 }
