@@ -34,10 +34,9 @@ module load samtools/1.16
 # echo "#sample_ID, Ref_name,           number_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
 
 depth() {
-	echo -e "Genome: $1 \nOutput: $2"
 	# get average depth
 	avg_depth=$(samtools depth -a ${1}_merged.bam | awk '{sum+=$3} END {print sum/NR}')
-	#sepeate sample_ID and Ref_name
+	#sepeate sample_ID and Ref_name using IFS
 	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${1}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
@@ -50,14 +49,19 @@ depth() {
 }
 export -f depth
 
-echo "Read depth."
+echo "Reading depth."
 cd $i
 # in *.bam '*' is turned into the variable ${1}
 # RLK004_Aspidoscelis_marmoratus_merged.bam
 # [A-Z]\+ looks for 1 or more capital letters
 ######################################################### if not using parallel do "xargs -I {}" instead
-ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3" | parallel depth "{}" "$o"
+#ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3" | parallel depth "{}" "$o"
 
+genome=$(ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3")
+#(-e enables interpretation of backslash escapes)
+echo -e "Genome: $genome\n$o"
+
+echo "$genome" | parallel depth "{}" "$o"
 
 echo "Done"
 module unload samtools/1.16
