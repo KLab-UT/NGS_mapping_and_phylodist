@@ -1,3 +1,21 @@
+August 2023
+1. Look into Protopterus_annectens in the depth_percentage.txt file (which is on scractch under mapped_reads)
+2. Make function in get_tree.r that performs the current line "as.matrix(dist_spbset(pairwise_dist, c(pairwise_dist, c("<raw_data_taxon>", "<reference_taxon>")))[1,2]"
+  --- This line is getting the phylogenetic distance from the raw_data_taxon to the reference_taxon
+  --- The only thing that should be provided as an argument for the function is the reference taxon (each of the four raw data taxa should be hard coded into the function)
+  --- The output should be a single phylogenetic distance value. You should assign this value to the pair of taxa.
+
+July 2023
+To do:
+
+1. Delete the files of the mapped reads from the last run (that didn't run to completion)
+2. On an interactive node, try running bwa mem with just one thread on one of the samples (e.g., KLC098_USD16091388L_HKFJFDSXX_L4.merged.fq.gz). If it is possible to do it with one thread, then keep the one thread for when you run it in parallel. If it doesn't work with just one thread, increase to 2 and test again. Continue this process until you identify the number of threads that will work.
+3. The number of threads that work will be your value for -t in the function that calls bwa mem and samtools.
+4. You need to multiply that value by 6 and use that as your value for -t in the command that runs the map_reads.sh script.
+5. You then need to multiply the value from #4 above and use that as your -n value in SBATCH
+6. Make sure that you have enough nodes. Assume 24 cores (each of which can run a single thread) per node. I think you can run 2 threads per core.
+
+May 2023
 1. Double check all of the mapped reads to make sure they mapped to the right genome!
   grep ^@PG KLC098_USD16091388L_HKFJFDSXX_L4.merged.sam
 

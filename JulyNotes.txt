@@ -1,8 +1,0 @@
-To do:
-
-1. Delete the files of the mapped reads from the last run (that didn't run to completion)
-2. On an interactive node, try running bwa mem with just one thread on one of the samples (e.g., KLC098_USD16091388L_HKFJFDSXX_L4.merged.fq.gz). If it is possible to do it with one thread, then keep the one thread for when you run it in parallel. If it doesn't work with just one thread, increase to 2 and test again. Continue this process until you identify the number of threads that will work.
-3. The number of threads that work will be your value for -t in the function that calls bwa mem and samtools.
-4. You need to multiply that value by 6 and use that as your value for -t in the command that runs the map_reads.sh script.
-5. You then need to multiply the value from #4 above and use that as your -n value in SBATCH
-6. Make sure that you have enough nodes. Assume 24 cores (each of which can run a single thread) per node. I think you can run 2 threads per core.

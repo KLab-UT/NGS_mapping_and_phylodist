@@ -14,7 +14,7 @@ squa <- read.tree('IBC06772-mmc6.tre')
 squa
 
 # Create vector with species of interest
-species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus")
+species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
 
 # Prune squa
 squa_pruned <- drop.tip(squa,squa$tip.label[-match(species_of_interest, squa$tip.label)])
@@ -83,3 +83,11 @@ su_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Scelopo
 su_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Sceloporus_undulatus")))[1,2]
 su_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Sceloporus_undulatus")))[1,2]
 su_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Sceloporus_undulatus")))[1,2]
+
+## Randy just added this one, the other new ones need to be addedhenodon punctatushenodon punctatus
+# Sphenodon punctatus ref
+sp_gul <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_gularis","Sphenodon punctatus")))[1,2]
+sp_sep <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_scalaris","Sphenodon punctatus")))[1,2]
+sp_inor <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_inornata","Sphenodon punctatus")))[1,2]
+sp_marm <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_marmorata","Sphenodon punctatus")))[1,2]
+
