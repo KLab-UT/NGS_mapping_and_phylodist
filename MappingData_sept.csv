@@ -1,0 +1,8 @@
+﻿sample,species,ref,dist,merged_mapping_success,unmerged_mapping_success,total_mapping_success,avg_depth_merged,avg_depth_unmerged
+KLC098,sept,am,57.37,0.9711,0.9713,0.9713,3.10056,19.6973
+KLC098,sept,hc,345.9,0.1506,0.1136,0.117,0.125226,0.702454
+KLC098,sept,la,313.9,0.1423,0.1043,0.1078,0.199725,1.10806
+KLC098,sept,pb,335.32,0.1193,0.0838,0.087,0.143375,0.762229
+KLC098,sept,pm,313.9,0.1438,0.1053,0.1089,0.184865,1.02038
+KLC098,sept,pr,313.9,0.1464,0.1074,0.1109,0.189151,1.05136
+KLC098,sept,su,335.32,0.1255,0.0961,0.0988,0.131354,0.746273

@@ -1,0 +1,8 @@
+﻿sample,species,ref,dist,merged_mapping_success,unmerged_mapping_success,total_mapping_success,avg_depth_merged,avg_depth_unmerged
+RLK004,gul,am,57.37,0.971,0.9735,0.9733,2.94008,21.0203
+RLK004,gul,hc,345.9,0.1517,0.112,0.1153,0.114812,0.730568
+RLK004,gul,la,313.9,0.1413,0.1019,0.1052,0.183282,1.15355
+RLK004,gul,pb,335.32,0.1166,0.0816,0.0844,0.129568,0.786692
+RLK004,gul,pm,313.9,0.1437,0.1033,0.1066,0.170393,1.06766
+RLK004,gul,pr,313.9,0.1459,0.1047,0.1081,0.1724,1.08488
+RLK004,gul,su,335.32,0.1237,0.094,0.0964,0.120606,0.774129
