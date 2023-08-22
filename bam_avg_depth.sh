@@ -19,35 +19,49 @@ while getopts $options option; do
 done
 
 echo ""
-echo "working directory: " $i
-echo "output file: " $o	
+echo "working directory:  $i"
+echo "output file:  $o"	
 
+if [ ! "$i" ] || [ ! "$o" ]; then
+	echo "arguments -o, and -i  must be provided"
+	echo "$usage" >&2; exit 1
+fi
 
 module load samtools/1.16
 
-depth() {
-	#clear file contents
-	> "$2"/depth_percentage.txt
+# sample_ID, Ref_name, #_of_reads, avg_depth, map_percentage
+# make depth_percentage.txt in sbatch file q.avg_depth.sh
+# echo "#sample_ID, Ref_name,           number_of_reads, avg_depth, map_percentage" > "$2"/depth_percentage.txt
 
+depth() {
 	# get average depth
-	echo ${1} >> "$2"/depth_percentage.txt
-	echo "average depth" >> "$2"/depth_percentage.txt
-	samtools depth -a ${1}.bam | awk '{sum+=$3} END { print "Average = ",sum/NR}' >> "$2"/depth_percentage.txt
+	avg_depth=$(samtools depth -a ${1}_merged.bam | awk '{sum+=$3} END {print sum/NR}')
+	#sepeate sample_ID and Ref_name using IFS
+	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${1}
+	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
-	echo "percentage" >> "$2"/depth_percentage.txt
-	echo "denominator" >> "$2"/depth_percentage.txt
-	denominator=samtools view -c >> "$2"/depth_percentage.txt
-	echo "numerator" >> "$2"/depth_percentage.txt
-	numerator=samtools view -c -F 260 >> "$2"/depth_percentage.txt
-	percentage=$numerator/$denominator
-	echo $percentage >> "$2"/depth_percentage.txt
+	denominator=$(samtools view -c ${1}_merged.bam)
+	numerator=$(samtools view -c -F 260 ${1}_merged.bam)
+	#percentage=$((numerator/denominator))
+	percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
+	#used commas as delimiters, could use spaces instead if prefered
+	echo "$sample_ID,$ref_name,$denominator,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
 }
 export -f depth
 
-echo "Read depth."
+echo "Reading depth."
 cd $i
 # in *.bam '*' is turned into the variable ${1}
-ls *[0-9]_[a-z][a-z].bam | cut -d "." -f "1" | parallel depth {} $o
+# RLK004_Aspidoscelis_marmoratus_merged.bam
+# [A-Z]\+ looks for 1 or more capital letters
+######################################################### if not using parallel do "xargs -I {}" instead
+#ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3" | parallel depth "{}" "$o"
+
+genome=$(ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3")
+#(-e enables interpretation of backslash escapes)
+echo -e "Genome: $genome\n$o"
+
+echo "$genome" | parallel depth "{}" "$o"
 
 echo "Done"
 module unload samtools/1.16
