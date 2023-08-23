@@ -42,6 +42,27 @@ pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
 # Extract data for each pair of interest
 library('usedist')
 
+# make genome list
+ref_genomes <- list("Aspidoscelis_marmoratus", "Podarcis_muralis", "Podarcis_raffonei", "Lacerta_agilis", "Hemicordylus_capensis", "Sceloporus_undulatus", "Python_bivittatus", "Gekko_japonicus", "Euleptes_europaea", "Alligator_mississippiensis", "Falco_peregrinus", "Bison_bison", "Homo_sapiens", "Mus_musculus", "Rana_temporaria", "Danio_rerio", "Fundulus_heteroclitus", "Protopterus_annectens", "Stegostoma_fasciatum", "Pristis_pectinata", "Petromyzon_marinus", "Salvator_merianae", "Calyptommatus_sinebrachiatus", "Tretioscincus_oriximinensis", "phenodon_punctatus", "Ambystoma_mexicanum", "Eptatretus_burgeri")
+
+#iterate through genome list to get phylogenetic distance
+Get_Dist <- function(input_list){
+	asp_gul_list <- list()
+	asp_sep_list <- list()
+	asp_inor_list <- list()
+	asp_marm_list <- list()
+	for (genome in genome_list){
+		asp_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","genome")))[1,2]
+		asp_gul_list <- append(asp_gul_list, asp_gul)
+		asp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","genome")))[1,2]
+		asp_sep_list <- append(asp_sep_list, asp_sep)
+		asp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","genome")))[1,2]
+		asp_inor_list <- append(asp_inor_list, asp_inor)
+		asp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","genome")))[1,2]
+		asp_marm_list <- append(asp_marm_list, asp_marm)
+	}
+}
+print("Phylogenetic Distances: \n AG: ", asp_gul_list, "\n AS: ", asp_sep_list, "\n AI: ", asp_inor_list, "\n AM: ", asp_marm_list)
 # marmoratus ref
 am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
 am_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Aspidoscelis_marmorata")))[1,2]
