@@ -14,7 +14,9 @@ squa <- read.tree('IBC06772-mmc6.tre')
 squa
 
 # Create vector with species of interest
-species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
+species_of_interest <- c("Aspidoscelis_marmoratus", "Podarcis_muralis", "Podarcis_raffonei", "Lacerta_agilis", "Hemicordylus_capensis", "Sceloporus_undulatus", "Python_bivittatus", "Gekko_japonicus", "Euleptes_europaea", "Alligator_mississippiensis", "Falco_peregrinus", "Bison_bison", "Homo_sapiens", "Mus_musculus", "Rana_temporaria", "Danio_rerio", "Fundulus_heteroclitus", "Protopterus_annectens", "Stegostoma_fasciatum", "Pristis_pectinata", "Petromyzon_marinus", "Salvator_merianae", "Calyptommatus_sinebrachiatus", "Tretioscincus_oriximinensis", "phenodon_punctatus", "Ambystoma_mexicanum", "Eptatretus_burgeri")
+#old Species of interest
+#("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
 
 # Prune squa
 squa_pruned <- drop.tip(squa,squa$tip.label[-match(species_of_interest, squa$tip.label)])
@@ -44,26 +46,31 @@ library('usedist')
 
 # make genome list
 ref_genomes <- list("Aspidoscelis_marmoratus", "Podarcis_muralis", "Podarcis_raffonei", "Lacerta_agilis", "Hemicordylus_capensis", "Sceloporus_undulatus", "Python_bivittatus", "Gekko_japonicus", "Euleptes_europaea", "Alligator_mississippiensis", "Falco_peregrinus", "Bison_bison", "Homo_sapiens", "Mus_musculus", "Rana_temporaria", "Danio_rerio", "Fundulus_heteroclitus", "Protopterus_annectens", "Stegostoma_fasciatum", "Pristis_pectinata", "Petromyzon_marinus", "Salvator_merianae", "Calyptommatus_sinebrachiatus", "Tretioscincus_oriximinensis", "phenodon_punctatus", "Ambystoma_mexicanum", "Eptatretus_burgeri")
+print(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Bison_bison")))
 
 #iterate through genome list to get phylogenetic distance
-Get_Dist <- function(input_list){
+Get_Dist <- function(genome_list){
 	asp_gul_list <- list()
 	asp_sep_list <- list()
 	asp_inor_list <- list()
 	asp_marm_list <- list()
 	for (genome in genome_list){
+	  
 		asp_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","genome")))[1,2]
-		asp_gul_list <- append(asp_gul_list, asp_gul)
+		asp_gul_list <- c(asp_gul_list, asp_gul)
 		asp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","genome")))[1,2]
-		asp_sep_list <- append(asp_sep_list, asp_sep)
+		asp_sep_list <- c(asp_sep_list, asp_sep)
 		asp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","genome")))[1,2]
-		asp_inor_list <- append(asp_inor_list, asp_inor)
+		asp_inor_list <- c(asp_inor_list, asp_inor)
 		asp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","genome")))[1,2]
 		asp_marm_list <- append(asp_marm_list, asp_marm)
 	}
+
+#print("Phylogenetic Distances: \n AG: ", asp_gul_list, "\n AS: ", asp_sep_list, "\n AI: ", asp_inor_list, "\n AM: ", asp_marm_list)
+for (i in asp_gul_list) {print(i)}
 }
-print("Phylogenetic Distances: \n AG: ", asp_gul_list, "\n AS: ", asp_sep_list, "\n AI: ", asp_inor_list, "\n AM: ", asp_marm_list)
-# marmoratus ref
+Get_Dist(ref_genomes)
+
 am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
 am_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Aspidoscelis_marmorata")))[1,2]
 am_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Aspidoscelis_marmorata")))[1,2]
@@ -107,8 +114,8 @@ su_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Scel
 
 ## Randy just added this one, the other new ones need to be addedhenodon punctatushenodon punctatus
 # Sphenodon punctatus ref
-sp_gul <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_gularis","Sphenodon punctatus")))[1,2]
-sp_sep <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_scalaris","Sphenodon punctatus")))[1,2]
-sp_inor <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_inornata","Sphenodon punctatus")))[1,2]
-sp_marm <- as.matrix(dist_spbset(pairwise_dist, c("Aspidoscelis_marmorata","Sphenodon punctatus")))[1,2]
+sp_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Sphenodon punctatus")))[1,2]
+sp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris","Sphenodon punctatus")))[1,2]
+sp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata","Sphenodon punctatus")))[1,2]
+sp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata","Sphenodon punctatus")))[1,2]
 
