@@ -5,7 +5,7 @@
 # Use this if not in this directory: setwd(<path-to-dir-with-tre-file>)
 
 # Import ape library
-## Install if you haven't using install.packages('ape')
+## Install if you haven't using install.packages('ape'=Analysis of Phylogenetics and Evolution)
 library(ape)
 
 # Read tree (which is a Newick file)
