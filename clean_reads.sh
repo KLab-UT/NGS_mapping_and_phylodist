@@ -54,7 +54,7 @@ while read sample; do
 		-i ${sample}_1.fq.gz -I ${sample}_2.fq.gz \
 		-m --merged_out ${o}/merged_reads/"$sample".merged.fq / --out1 ${o}/unmerged_reads/"$sample".unmerged1.fq --out2 ${o}/unmerged_reads/"$sample".unmerged2.fq \
 
-cd ../cleaned_reads/merged_reads
+cd ../trimmed_reads/merged_reads
 gzip "$sample".merged.fq
 cd ../unmerged_reads
 gzip "$sample".unmerged1.fq
