@@ -9,9 +9,9 @@
 
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
-mkdir -p $wd/cleaned_reads
-mkdir -p $wd/cleaned_reads/merged_reads
-mkdir -p $wd/cleaned_reads/unmerged_reads
+mkdir -p $wd/trimmed_reads
+mkdir -p $wd/trimmed_reads/merged_reads
+mkdir -p $wd/trimmed_reads/unmerged_reads
 mkdir -p $wd/references
 mkdir -p $wd/mapped_reads/Aspidoscelis_marmoratus
 mkdir -p $wd/mapped_reads/Alligator_mississippiensis
@@ -41,14 +41,14 @@ mkdir -p $wd/mapped_reads/Salvator_merianae
 mkdir -p $wd/mapped_reads/Sphenodon_punctatus
 mkdir -p $wd/mapped_reads/Tretioscincus_oriximinensis
 
-# map cleaned reads to reference:
+# map trimmed reads to reference:
 MapReads() {
 	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 	echo "############################"
 	echo ${1} ${2}
 	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
-	bash map_reads.sh -i $wd/cleaned_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
-	bash map_reads.sh -i $wd/cleaned_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
 }
 export -f MapReads
 
