@@ -59,7 +59,7 @@ cd $i
 
 genome=$(ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3")
 #(-e enables interpretation of backslash escapes)
-echo -e "Genome: $genome\n$o"
+echo -e "Genome: $genome\nOutput: $o"
 
 echo "$genome" | parallel depth "{}" "$o"
 

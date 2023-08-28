@@ -45,7 +45,7 @@ mkdir -p $wd/mapped_reads/Tretioscincus_oriximinensis
 MapReads() {
 	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 	echo "############################"
-	echo ${1} ${2}
+	echo "Species: ${1}\nGenome: ${2}"
 	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
 	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
 	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
@@ -58,5 +58,4 @@ export -f MapReads
 
 #grep -v '^#' ref_genomes.txt | cut -d " " -f 1,2 | parallel MapReads {1} {2}
 grep -v '^#' ref_genomes.txt | parallel --colsep ' ' MapReads {1} {2}
-
-
+echo "mapping done"
