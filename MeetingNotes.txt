@@ -4,6 +4,7 @@ August 2023
   --- This line is getting the phylogenetic distance from the raw_data_taxon to the reference_taxon
   --- The only thing that should be provided as an argument for the function is the reference taxon (each of the four raw data taxa should be hard coded into the function)
   --- The output should be a single phylogenetic distance value. You should assign this value to the pair of taxa.
+3. The single phylogenetic distance value for each sample-reference pair should be added in the depth_percentage.txt file as a new column
 
 July 2023
 To do:
