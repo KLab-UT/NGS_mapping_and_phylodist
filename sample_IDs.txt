@@ -1,0 +1,4 @@
+KLC098 : Aspidoscelis septemvittatus (a.k.a., scalaris)
+RLK004 : Aspidoscelis gularis
+RLK019 : Aspidoscelis inornatus (a.k.a., inornata)
+RLK034 : Aspidoscelis marmoratus (a.k.a., marmorata)
