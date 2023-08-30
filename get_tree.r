@@ -68,27 +68,27 @@ for (g in ref_genomes){
   asp_inor <- "RLK019"
   asp_marm <- "RLK034"
   dist <- pd_matrix["Aspidoscelis_scalaris", g]
-  dist_line <- paste(asp_sep, g, dist, sep = " ")
+  dist_line <- paste(asp_sep, g, dist, sep = ",")
   #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
   
   dist <- pd_matrix["Aspidoscelis_gularis", g]
-  dist_line <- paste(asp_gul, g, dist, sep = " ")
+  dist_line <- paste(asp_gul, g, dist, sep = ",")
   #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
   
   dist <- pd_matrix["Aspidoscelis_inornata", g]
-  dist_line <- paste(asp_inor, g, dist, sep = " ")
-  sample_dist <- append(sample_dist, dist_line)
+  dist_line <- paste(asp_inor, g, dist, sep = ",")
+  #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
   
   dist <- pd_matrix["Aspidoscelis_marmorata", g]
-  dist_line <- paste(asp_marm, g, dist, sep = " ")
-  sample_dist <- append(sample_dist, dist_line)
+  dist_line <- paste(asp_marm, g, dist, sep = ",")
+  #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
 }
 close(file_connection)
-sample_dist
+
 # file_path <- "sample_dist.txt"
 # file_connection <- file(file_path, "w")
 # for (dline in sample_dist) {
