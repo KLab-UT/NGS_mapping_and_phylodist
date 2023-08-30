@@ -1,8 +1,9 @@
-KLC098 Tretioscincus_oriximinensis 191.58
-RLK004 Tretioscincus_oriximinensis 191.58
-RLK019 Tretioscincus_oriximinensis 191.59
-RLK034 Tretioscincus_oriximinensis 191.59
-4 Aspidoscelis_scalaris 8.86
+KLC098 Aspidoscelis_gularis 8.86
+RLK004 Aspidoscelis_gularis 0
+RLK019 Aspidoscelis_gularis 57.37
+RLK034 Aspidoscelis_gularis 57.37
+KLC098 Aspidoscelis_scalaris 0
+RLK004 Aspidoscelis_scalaris 8.86
 RLK019 Aspidoscelis_scalaris 57.37
 RLK034 Aspidoscelis_scalaris 57.37
 KLC098 Aspidoscelis_inornata 57.37
