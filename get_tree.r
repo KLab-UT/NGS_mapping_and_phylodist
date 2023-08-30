@@ -14,13 +14,12 @@ squa <- read.tree('IBC06772-mmc6.tre')
 squa
 
 # Create vector with species of interest
-species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
-
+#species_of_interest <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
 
 
 # Prune squa
 squa_pruned <- drop.tip(squa,squa$tip.label[-match(species_of_interest, squa$tip.label)])
-
+squa_pruned
 # Set plot size
 par(mar = c(5, 5, 4, 0) + 0.1)  # Adjust the margin values as needed
 # Make branches longer so text doesn't cover species name
@@ -40,104 +39,62 @@ class(squa_pruned)
 # Get distance from ref tips to whip tips using adephylo (install using install.packages('adephylo') if not installed)
 library(adephylo)
 ## Two approaches: get pairwise distances between all tips
-pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
 # Extract data for each pair of interest
-library('usedist')
+#library('usedist')
 
-# make genome list
-
+####################################################################
 ref_genomes <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
 #bigger list of 27 genomes
 #("Aspidoscelis_marmoratus", "Podarcis_muralis", "Podarcis_raffonei", "Lacerta_agilis", "Hemicordylus_capensis", "Sceloporus_undulatus", "Python_bivittatus", "Gekko_japonicus", "Euleptes_europaea", "Alligator_mississippiensis", "Falco_peregrinus", "Bison_bison", "Homo_sapiens", "Mus_musculus", "Rana_temporaria", "Danio_rerio", "Fundulus_heteroclitus", "Protopterus_annectens", "Stegostoma_fasciatum", "Pristis_pectinata", "Petromyzon_marinus", "Salvator_merianae", "Calyptommatus_sinebrachiatus", "Tretioscincus_oriximinensis", "phenodon_punctatus", "Ambystoma_mexicanum", "Eptatretus_burgeri")
-#for (g in ref_genomes){
-#print(dist_subset(pairwise_dist, c("Aspidoscelis_gularis", g)))
+samples <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata")
+pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
+pd_matrix <- as.matrix(pairwise_dist)
+pd_matrix
+
+a <- pd_matrix["Sphenodon_punctatus","Aspidoscelis_gularis"]
+a
+pairwise_dist_df <- as.data.frame(pd_matrix)
+write.csv(pairwise_dist_df, "test.csv", row.names = TRUE)
 
 
-############################ 
-asp_gul <- as.matrix(pairwise_dist, c("Aspidoscelis_gularis", ref_genomes))
-asp_gul_df <- data.frame(Reference = ref_genomes, Distance = asp_gul)
-print(asp_gul_df)
-write.csv(asp_gul_df, "phylodist.csv", row.names = TRUE)
-############################
+# make genome list
+sample_dist <- c()
 
-asp_gul_list <- numeric(length(ref_genomes))
-asp_sep_list <- c()
-asp_inor_list <- c()
-asp_marm_list <- c()
-for (i in seq_along(ref_genomes)){
-  asp_gul <- (dist_subset(pairwise_dist, c("Aspidoscelis_gularis", ref_genomes)))
-  asp_gul_list[i] <- asp_gul
-  asp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris", ref_genomes)))[1,2]
-  asp_sep_list[i] <- asp_sep
-  asp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata", ref_genomes)))[1,2]
-  asp_inor_list[i] <- asp_inor
-  asp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata", ref_genomes)))[1,2]
-  asp_marm_list[i] <- asp_marm
+file_path <- "sample_dist.txt"
+file_connection <- file(file_path, "w")
+for (g in ref_genomes){
+  asp_sep <- "KLC098"
+  asp_gul <- "RLK004"
+  asp_inor <- "RLK019"
+  asp_marm <- "RLK034"
+  dist <- pd_matrix["Aspidoscelis_scalaris", g]
+  dist_line <- paste(asp_sep, g, dist, sep = " ")
+  #sample_dist <- append(sample_dist, dist_line)
+  writeLines(dist_line, con = file_connection)
+  
+  dist <- pd_matrix["Aspidoscelis_gularis", g]
+  dist_line <- paste(asp_gul, g, dist, sep = " ")
+  #sample_dist <- append(sample_dist, dist_line)
+  writeLines(dist_line, con = file_connection)
+  
+  dist <- pd_matrix["Aspidoscelis_inornata", g]
+  dist_line <- paste(asp_inor, g, dist, sep = " ")
+  sample_dist <- append(sample_dist, dist_line)
+  writeLines(dist_line, con = file_connection)
+  
+  dist <- pd_matrix["Aspidoscelis_marmorata", g]
+  dist_line <- paste(asp_marm, g, dist, sep = " ")
+  sample_dist <- append(sample_dist, dist_line)
+  writeLines(dist_line, con = file_connection)
 }
-print(paste(asp_gul_list))
-# for (ref_genome in ref_genomes){
-#   asp_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis", ref_genome)))[1,2]
-#   asp_gul_list <- c(asp_gul_list, asp_gul)
-#   asp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris", ref_genome)))[1,2]
-#   asp_sep_list <- c(asp_sep_list, asp_sep)
-#   asp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata", ref_genome)))[1,2]
-#   asp_inor_list <- c(asp_inor_list, asp_inor)
-#   asp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata", ref_genome)))[1,2]
-#   asp_marm_list <- c(asp_marm_list, asp_marm)
+close(file_connection)
+sample_dist
+# file_path <- "sample_dist.txt"
+# file_connection <- file(file_path, "w")
+# for (dline in sample_dist) {
+#   writeLines(dline, con = file_connection)
 # }
-result_df <- data.frame(
-  "Genome" = genome_list,
-  "Aspidoscelis_gularis" = asp_gul_list
-)
-print(result_df)
-  
-genome_result <- data.frame(
-  "Genome" = ref_genomes,
-  "AG" = asp_gul_list,
-  "AS" = asp_sep_list,
-  "AI" = asp_inor_list,
-  "AM" = asp_marm_list
-)
-print(genome_result)
-  
-#result_df <- rbind(result_df, genome_result)
-
-
-# Call the function and store the results
-#result_table <- Get_Dist(ref_genomes)
-#Get_Dist(ref_genomes)
-
-
-
-# #iterate through genome list to get phylogenetic distance
-# Get_Dist <- function(genome_list){
-# 	asp_gul_list <- list()
-# 	asp_sep_list <- list()
-# 	asp_inor_list <- list()
-# 	asp_marm_list <- list()
-# 	for (genome in genome_list){
-# 	  
-# 		asp_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis",genome)))[1,2]
-# 		asp_gul_list <- c(asp_gul_list, asp_gul)
-# 		asp_sep <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_scalaris",genome)))[1,2]
-# 		asp_sep_list <- c(asp_sep_list, asp_sep)
-# 		asp_inor <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_inornata",genome)))[1,2]
-# 		asp_inor_list <- c(asp_inor_list, asp_inor)
-# 		asp_marm <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_marmorata",genome)))[1,2]
-# 		asp_marm_list <- append(asp_marm_list, asp_marm)
-# 	}
-#   row_names <- c("Aspidoscelis_gularis", "Aspidoscelis_scalaris", "Aspidoscelis_inornata", "Aspidoscelis_marmorata")
-#   #make matrix then table of phylogenetic distances
-#   phylodist_matrix <- matrix("", nrow = length(row_names), ncol = length(ref_genomes), dimnames = list(row_names, ref_genomes))
-#   phylodist_table <- as.data.frame(phylodist_matrix, stringsAsFactors = FALSE)
-# 	cat("ref_genomes: ", paste(ref_genomes, collapse = ", "), "\n")
-# 	print("Phylogenetic Distances:")
-# 	cat("AG:", paste(asp_gul_list, collapse = ", "), "\n")
-# 	cat("AS:", paste(asp_sep_list, collapse = ", "), "\n")
-# 	cat("AI:", paste(asp_inor_list, collapse = ", "), "\n")
-# 	cat("AM:", paste(asp_marm_list, collapse = ", "), "\n")
-# }
-# Get_dist(ref_genomes)
+#close(file_connection)
 
 ################################################################
 # am_gul <- as.matrix(dist_subset(pairwise_dist, c("Aspidoscelis_gularis","Aspidoscelis_marmorata")))[1,2]
