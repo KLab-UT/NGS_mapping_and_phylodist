@@ -22,6 +22,6 @@ Petromyzon_marinus GCF_010993605.1_kPetMar1.pri_genomic.fna.gz
 Salvator_merianae GCA_003586115.2_HLtupMer6_genomic.fna.gz
 Calyptommatus_sinebrachiatus GCA_022412395.1_HLcalSin1_genomic.fna.gz
 Tretioscincus_oriximinensis GCA_022410635.1_HLtreOri1_genomic.fna.gz
-phenodon_punctatus GCA_003113815.1_ASM311381v1_genomic.fna.gz
+Sphenodon_punctatus GCA_003113815.1_ASM311381v1_genomic.fna.gz
 Ambystoma_mexicanum GCA_001455525.1_AmbMex13_14.1.0_genomic.fna.gz
 Eptatretus_burgeri GCA_900186335.3_Eburgeri_4.0_genomic.fna.gz

@@ -2,8 +2,8 @@
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --time=48:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=16
+#SBATCH --nodes=7
+#SBATCH --ntasks=108
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -47,8 +47,8 @@ MapReads() {
 	echo "############################"
 	echo "Species: ${1}\nGenome: ${2}"
 	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
-	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
-	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 2
+	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 2
 }
 export -f MapReads
 
