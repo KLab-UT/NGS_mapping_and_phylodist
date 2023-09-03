@@ -58,7 +58,7 @@ bwa index ${g}
 # -t threads equal to number of reads
 fastqToBam() {
   bwa mem -t ${t} "$2" ${1}.fq.gz > "$3"/${1}.sam
-  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ ${t}
+  samtools sort "$3"/${1}.sam -@ ${t} > "$3"/${1}_sorted.bam
 }
 export -f fastqToBam
 
