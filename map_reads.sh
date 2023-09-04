@@ -55,10 +55,12 @@ bwa index ${g}
 
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
-# -t threads equal to number of reads
+# -t threads equal to number of reads. when I use ${t} in samtools it gives the following error:
+# sort: option requires an argument -- '@'
+#so instead of ${t} i put 2
 fastqToBam() {
   bwa mem -t ${t} "$2" ${1}.fq.gz > "$3"/${1}.sam
-  samtools sort "$3"/${1}.sam -@ ${t} > "$3"/${1}_sorted.bam
+  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 2
 }
 export -f fastqToBam
 

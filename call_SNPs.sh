@@ -51,6 +51,8 @@ module load SAMtools/1.3.1
 ##adding -I skips Indels
 #bcftools view -I -bvcg - > variants.bcf
 
+#samtools mpileup -uf reference.fasta output.bam | bcftools view -bvcg - > variants.bcf
+#bcftools view variants.bcf | vcfutils.pl varFilter > filtered_variants.vcf
 
 # List all BAM files in current directory
 bam_files=$(ls *.bam | tr '\n' ' ')
