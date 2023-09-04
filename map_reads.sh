@@ -60,7 +60,7 @@ bwa index ${g}
 #so instead of ${t} i put 2
 fastqToBam() {
   bwa mem -t ${t} "$2" ${1}.fq.gz > "$3"/${1}.sam
-  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@ 2
+  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@2
 }
 export -f fastqToBam
 
