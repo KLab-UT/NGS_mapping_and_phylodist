@@ -3,7 +3,7 @@
 #SBATCH --partition=lonepeak
 #SBATCH --time=48:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=16
+#SBATCH --ntasks=4
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
