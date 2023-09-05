@@ -43,10 +43,10 @@ library(adephylo)
 #library('usedist')
 
 ####################################################################
-ref_genomes <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
+ref_genomes <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmoratus","Podarcis_muralis","Podarcis_raffoneae","Lacerta_agilis","Hemicordylus_capensis","Sceloporus_undulatus","Python_bivittatus","Calyptommatus_sinebrachiatus","Euleptes_europaea","Gekko_japonicus","Salvator_merianae","Sphenodon_punctatus","Tretioscincus_oriximinensis")
 #bigger list of 27 genomes
 #("Aspidoscelis_marmoratus", "Podarcis_muralis", "Podarcis_raffonei", "Lacerta_agilis", "Hemicordylus_capensis", "Sceloporus_undulatus", "Python_bivittatus", "Gekko_japonicus", "Euleptes_europaea", "Alligator_mississippiensis", "Falco_peregrinus", "Bison_bison", "Homo_sapiens", "Mus_musculus", "Rana_temporaria", "Danio_rerio", "Fundulus_heteroclitus", "Protopterus_annectens", "Stegostoma_fasciatum", "Pristis_pectinata", "Petromyzon_marinus", "Salvator_merianae", "Calyptommatus_sinebrachiatus", "Tretioscincus_oriximinensis", "phenodon_punctatus", "Ambystoma_mexicanum", "Eptatretus_burgeri")
-samples <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmorata")
+samples <- c("Aspidoscelis_gularis","Aspidoscelis_scalaris","Aspidoscelis_inornata","Aspidoscelis_marmoratus")
 pairwise_dist <- distTips(squa_pruned, tips='all', 'patristic')
 pd_matrix <- as.matrix(pairwise_dist)
 pd_matrix
@@ -62,6 +62,7 @@ sample_dist <- c()
 
 file_path <- "sample_dist.txt"
 file_connection <- file(file_path, "w")
+
 for (g in ref_genomes){
   asp_sep <- "KLC098"
   asp_gul <- "RLK004"
@@ -82,7 +83,7 @@ for (g in ref_genomes){
   #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
   
-  dist <- pd_matrix["Aspidoscelis_marmorata", g]
+  dist <- pd_matrix["Aspidoscelis_marmoratus", g]
   dist_line <- paste(asp_marm, g, dist, sep = ",")
   #sample_dist <- append(sample_dist, dist_line)
   writeLines(dist_line, con = file_connection)
