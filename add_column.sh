@@ -1,6 +1,6 @@
 #!/bin/bash
 
-destination_file="depth_and_dist.txt"
+destination_file="depth_and_dist.csv"
 source_file_1="sample_dist.txt"
 source_file_2="depth_percentage.txt"
 #source_file_2=$(sed '1d' depth_percentage.txt)

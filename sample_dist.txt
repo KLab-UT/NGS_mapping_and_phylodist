@@ -10,10 +10,10 @@ KLC098,Aspidoscelis_inornata,57.37
 RLK004,Aspidoscelis_inornata,57.37
 RLK019,Aspidoscelis_inornata,0
 RLK034,Aspidoscelis_inornata,57.38
-KLC098,Aspidoscelis_marmorata,57.37
-RLK004,Aspidoscelis_marmorata,57.37
-RLK019,Aspidoscelis_marmorata,57.38
-RLK034,Aspidoscelis_marmorata,0
+KLC098,Aspidoscelis_marmoratus,57.37
+RLK004,Aspidoscelis_marmoratus,57.37
+RLK019,Aspidoscelis_marmoratus,57.38
+RLK034,Aspidoscelis_marmoratus,0
 KLC098,Podarcis_muralis,313.89
 RLK004,Podarcis_muralis,313.89
 RLK019,Podarcis_muralis,313.9
