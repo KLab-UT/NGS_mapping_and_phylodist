@@ -59,8 +59,8 @@ bwa index ${g}
 # sort: option requires an argument -- '@'
 #so instead of ${t} i put 2
 fastqToBam() {
-  bwa mem -t ${t} "$2" ${1}.fq.gz > "$3"/${1}.sam
-  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@2
+  bwa mem -t 4 "$2" ${1}.fq.gz > "$3"/${1}.sam
+  samtools sort "$3"/${1}.sam > "$3"/${1}_sorted.bam -@4
 }
 export -f fastqToBam
 
