@@ -2,8 +2,8 @@
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --time=48:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=16
+#SBATCH --nodes=3
+#SBATCH --ntasks=52
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -46,10 +46,12 @@ echo "Beggining mapping"
 MapReads() {
 	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 	echo "############################"
-	echo "Species: ${1}\nGenome: ${2}"
+	echo -e "Species: ${1}\nGenome: ${2}"
 	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
 	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	echo "merched read mapped"
 	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	echo "unmerged read mapped"
 }
 export -f MapReads
 
@@ -60,3 +62,4 @@ export -f MapReads
 #grep -v '^#' ref_genomes.txt | cut -d " " -f 1,2 | parallel MapReads {1} {2}
 grep -v '^#' ref_genomes.txt | parallel --colsep ' ' MapReads {1} {2}
 echo "mapping done"
+

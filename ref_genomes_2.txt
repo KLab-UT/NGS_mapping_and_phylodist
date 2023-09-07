@@ -11,7 +11,7 @@
 #Falco_peregrinus GCF_023634155.1_bFalPer1.pri_genomic.fna.gz
 #Bison_bison GCF_000754665.1_Bison_UMD1.0_genomic.fna.gz 
 #Homo_sapiens GCF_009914755.1_T2T-CHM13v2.0_genomic.fna.gz
-Mus_musculus GCF_000001635.27_GRCm39_genomic.fna.gz
+#Mus_musculus GCF_000001635.27_GRCm39_genomic.fna.gz
 Rana_temporaria GCF_905171775.1_aRanTem1.1_genomic.fna.gz
 Danio_rerio GCF_000002035.6_GRCz11_genomic.fna.gz
 Fundulus_heteroclitus GCF_011125445.2_MU-UCD_Fhet_4.1_genomic.fna.gz
