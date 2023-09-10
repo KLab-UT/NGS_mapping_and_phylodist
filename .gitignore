@@ -8,3 +8,4 @@ outfile
 .Rapp.history
 q.temp_main.sh
 test.sh
+intermediate.txt
