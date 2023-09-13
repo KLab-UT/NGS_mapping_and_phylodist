@@ -8,3 +8,5 @@ outfile
 .Rapp.history
 q.temp_main.sh
 test.sh
+intermediate.txt
+q.temp_map_to_genomes.sh
