@@ -1,3 +1,8 @@
+September 13, 2023
+1. To the depth_and_dist.csv file, remove the number_of_reads column and create a total_mapped_reads column. For the total_mapped_reads column and the map_percentage column, use the summary provided by samtools flagstat (https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/)
+2. Get distance to a couple of outgroup species. Which ones? We need to look around a find out. (Randy will do this)
+3. Look into GATK documentation, and think about what you will do once you have mapped whiptail reads: https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-
+
 September 5, 2023
 1. Verify what "number_of_reads" in the depth_and_dist.csv file means (Dante will do this)
 2. Get distance to a couple of outgroup species. Which ones? We need to look around a find out. (Randy will do this)
