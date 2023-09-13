@@ -1,9 +1,9 @@
 #!/bin/sh
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
-#SBATCH --time=48:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=16
+#SBATCH --time=72:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks=32
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -60,8 +60,8 @@ export -f MapReads
 # grep -v filter out lines starting with #
 
 #grep -v '^#' ref_genomes.txt | cut -d " " -f 1,2 | parallel MapReads {1} {2}
-# -j 8 limits the number of threads used to 8
-grep -v '^#' ref_genomes_2.txt | parallel -j 8 --colsep ' ' MapReads {1} {2}
+# -j 16 limits the number of threads used to 16
+grep -v '^#' ref_genomes_2.txt | parallel --colsep ' ' MapReads {1} {2}
 echo "mapping done"
 
 # Keep in mind that if your MapReads function itself uses multiple threads (e.g., with the -t option set to 4 as in your example), the total number of threads used will be a combination of those used by MapReads and those used by parallel.
