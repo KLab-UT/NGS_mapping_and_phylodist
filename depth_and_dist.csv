@@ -1,4 +1,8 @@
 #sample_ID, Ref_name, number_of_reads, avg_depth, map_percentage, patristic_distance
+RLK004,Aspidoscelis_marmoratus,25394648,2.94008,97.00,57.38
+KLC098,Aspidoscelis_marmoratus,26875600,3.10056,97.00,57.38
+RLK019,Aspidoscelis_marmoratus,26916716,3.0953,96.00,57.38
+RLK034,Aspidoscelis_marmoratus,36306228,4.81418,99.00,0
 KLC098,Podarcis_muralis,23789733,0.184865,14.00,313.89
 RLK004,Podarcis_muralis,22503400,0.170393,14.00,313.89
 RLK019,Podarcis_muralis,23887784,0.170185,13.00,313.9

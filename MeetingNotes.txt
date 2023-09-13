@@ -1,3 +1,8 @@
+September 5, 2023
+1. Verify what "number_of_reads" in the depth_and_dist.csv file means (Dante will do this)
+2. Get distance to a couple of outgroup species. Which ones? We need to look around a find out. (Randy will do this)
+3. Look into GATK documentation, and think about what you will do once you have mapped whiptail reads: https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-
+
 August 2023
 1. Look into Protopterus_annectens in the depth_percentage.txt file (which is on scractch under mapped_reads)
 2. Make function in get_tree.r that performs the current line "as.matrix(dist_spbset(pairwise_dist, c(pairwise_dist, c("<raw_data_taxon>", "<reference_taxon>")))[1,2]"
