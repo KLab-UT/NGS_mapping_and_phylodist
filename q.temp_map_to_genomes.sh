@@ -48,9 +48,9 @@ MapReads() {
 	echo "############################"
 	echo -e "Species: ${1}\nGenome: ${2}"
 	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
-	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "merched read mapped"
-	#bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 4
+	#bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "unmerged read mapped"
 }
 export -f MapReads
