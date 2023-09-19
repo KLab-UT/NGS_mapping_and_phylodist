@@ -40,12 +40,16 @@ depth() {
 	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${1}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
-	denominator=$(samtools view -c ${1}_merged.bam)
-	numerator=$(samtools view -c -F 260 ${1}_merged.bam)
+	#denominator=$(samtools view -c ${1}_merged.bam)
+	#numerator=$(samtools view -c -F 260 ${1}_merged.bam)
 	#percentage=$((numerator/denominator))
-	percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
+	#percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
+
+	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
+	percentage=$(samtools flagstat ${1}_merged.bam | awk -F "[(|%]" 'NR == 3 {print $2}')
+	total_reads=$(samtools flagstat ${1}_merged.bam | awk -F " " 'NR == 1 {print $1}')
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$denominator,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
+	echo "$sample_ID,$ref_name,$total_reads,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
 }
 export -f depth
 
