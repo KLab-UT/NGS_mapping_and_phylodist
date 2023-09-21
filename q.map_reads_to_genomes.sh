@@ -2,8 +2,8 @@
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --time=72:00:00
-#SBATCH --nodes=2
-#SBATCH --ntasks=32
+#SBATCH --nodes=3
+#SBATCH --ntasks=36
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -47,10 +47,11 @@ MapReads() {
 	wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data
 	echo "############################"
 	echo -e "Species: ${1}\nGenome: ${2}"
-	# you're passing in 6 threads to map_reads.sh and runnung it 27 times
-	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
+	# you're passing in n threads where n is number of reads (6) multiplied by number of threads used by functions in map_reads.sh (2).
+	# This is done for every genome you want to map (27 genomes listed in ref_genomes.txt).
+	#bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "merched read mapped"
-	#bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
+	bash map_reads.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "unmerged read mapped"
 }
 export -f MapReads
@@ -60,7 +61,6 @@ export -f MapReads
 # grep -v filter out lines starting with #
 
 #grep -v '^#' ref_genomes.txt | cut -d " " -f 1,2 | parallel MapReads {1} {2}
-# -j 16 limits the number of threads used to 16
 grep -v '^#' ref_genomes.txt | parallel --colsep ' ' MapReads {1} {2}
 echo "mapping done"
 
