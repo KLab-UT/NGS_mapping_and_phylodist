@@ -25,3 +25,4 @@ ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Tretioscincus_oriximinensi
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Sphenodon_punctatus/latest_assembly_versions/GCA_003113815.1_ASM311381v1
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Ambystoma_mexicanum/latest_assembly_versions/GCA_001455525.1_AmbMex13_14.1.0
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Eptatretus_burgeri/latest_assembly_versions/GCA_900186335.3_Eburgeri_4.0
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Latimeria_chalumnae/latest_assembly_versions/GCF_000225785.1_LatCha1
