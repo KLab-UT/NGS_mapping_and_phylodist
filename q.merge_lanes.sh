@@ -1,15 +1,16 @@
 #!/bin/sh
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
+#SBATCH --time=72:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --ntasks=16
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
 
 # create working environment
 wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
-home=~/Biol_4310/whiptail_nmt_variation
+home=~/Biol_4310/NGS_mapping_and_phylodist
 # run bash script for counting unmerged reads
 cd $wd
 
