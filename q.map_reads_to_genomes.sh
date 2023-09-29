@@ -2,8 +2,8 @@
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --time=72:00:00
-#SBATCH --nodes=3
-#SBATCH --ntasks=36
+#SBATCH --nodes=1
+#SBATCH --ntasks=12
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
@@ -31,7 +31,7 @@ mkdir -p $wd/mapped_reads/Mus_musculus
 mkdir -p $wd/mapped_reads/Podarcis_muralis
 mkdir -p $wd/mapped_reads/Podarcis_raffonei
 mkdir -p $wd/mapped_reads/Python_bivittatus
-mkdir -p $wd/mapped_reads/Protopterus_annectens
+#mkdir -p $wd/mapped_reads/Protopterus_annectens
 mkdir -p $wd/mapped_reads/Pristis_pectinata
 mkdir -p $wd/mapped_reads/Petromyzon_marinus
 mkdir -p $wd/mapped_reads/Rana_temporaria
@@ -40,6 +40,7 @@ mkdir -p $wd/mapped_reads/Sceloporus_undulatus
 mkdir -p $wd/mapped_reads/Salvator_merianae
 mkdir -p $wd/mapped_reads/Sphenodon_punctatus
 mkdir -p $wd/mapped_reads/Tretioscincus_oriximinensis
+mkdir -p $wd/mapped_reads/Latimeria_chalumnae
 
 # map trimmed reads to reference:
 echo "Beggining mapping"
