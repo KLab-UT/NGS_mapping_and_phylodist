@@ -50,7 +50,7 @@ MapReads() {
 	echo -e "Species: ${1}\nGenome: ${2}"
 	# you're passing in n threads where n is number of reads (6) multiplied by number of threads used by functions in map_reads.sh (2).
 	# This is done for every genome you want to map (27 genomes listed in ref_genomes.txt).
-	#bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
+	bash map_reads.sh -i $wd/trimmed_reads/merged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "merched read mapped"
 	bash map_reads_unmerged.sh -i $wd/trimmed_reads/unmerged_reads -g $wd/references/${2} -o $wd/mapped_reads/${1} -t 12
 	echo "unmerged read mapped"
