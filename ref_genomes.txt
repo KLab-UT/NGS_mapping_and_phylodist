@@ -1,13 +1,13 @@
-Aspidoscelis_marmoratus GCA_014337955.1_AspMar1.0_genomic.fna.gz
-Podarcis_muralis GCF_004329235.1_PodMur_1.0_genomic.fna.gz
-Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
+#Aspidoscelis_marmoratus GCA_014337955.1_AspMar1.0_genomic.fna.gz
+#Podarcis_muralis GCF_004329235.1_PodMur_1.0_genomic.fna.gz
+#Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
 #Lacerta_agilis GCF_009819535.1_rLacAgi1.pri_genomic.fna.gz
 #Hemicordylus_capensis GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz
 #Sceloporus_undulatus GCF_019175285.1_SceUnd_v1.1_genomic.fna.gz
 #Python_bivittatus GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.fna.gz
 #Gekko_japonicus GCF_001447785.1_Gekko_japonicus_V1.1_genomic.fna.gz
 #Euleptes_europaea GCF_029931775.1_rEulEur1.hap1_genomic.fna.gz
-#Alligator_mississippiensis GCF_000281125.3_ASM28112v4_genomic.fna.gz
+Alligator_mississippiensis GCF_000281125.3_ASM28112v4_genomic.fna.gz
 #Falco_peregrinus GCF_023634155.1_bFalPer1.pri_genomic.fna.gz
 #Bison_bison GCF_000754665.1_Bison_UMD1.0_genomic.fna.gz 
 #Homo_sapiens GCF_009914755.1_T2T-CHM13v2.0_genomic.fna.gz
