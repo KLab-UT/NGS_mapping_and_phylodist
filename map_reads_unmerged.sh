@@ -59,8 +59,8 @@ module load samtools/1.16
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
 fastqToBam() {
-  bwa mem -t ${t} "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > "$3"/${1}.unmerged.sam
-  samtools sort "$3"/${1}.unmerged.sam > "$3"/${1}.unmerged_sorted.bam -@ ${t}
+  [[ ! -f "${1}.unmerged.sam" ]] && bwa mem -t 2 "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > "$3"/${1}.unmerged.sam
+  samtools sort "$3"/${1}.unmerged.sam > "$3"/${1}.unmerged_sorted.bam -@ 2
 }
 export -f fastqToBam
 
