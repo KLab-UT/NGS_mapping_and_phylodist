@@ -2,8 +2,8 @@
 #SBATCH --account=utu
 #SBATCH --partition=lonepeak
 #SBATCH --time=72:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=12
+#SBATCH --nodes=3
+#SBATCH --ntasks=36
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 
