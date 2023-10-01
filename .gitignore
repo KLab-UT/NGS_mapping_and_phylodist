@@ -9,6 +9,6 @@ outfile
 q.temp_main.sh
 test.sh
 intermediate.txt
-q.temp_map_to_genomes.sh
+q.temp_map_reads_to_genomes.sh
 ref_genomes.txt
 ref_genomes_2.txt
