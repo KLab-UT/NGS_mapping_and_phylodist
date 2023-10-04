@@ -1,3 +1,6 @@
+October 4, 2023 meeting with Dante
+Dante created an awesome bar chart. Now we need to put them in order. Randy will provide the correct order.
+
 September 27, 2023 meeting with Dante
 - Map sequences to Latimeria genome
 - See figure ideas about creating a bar plot with phylogeny
