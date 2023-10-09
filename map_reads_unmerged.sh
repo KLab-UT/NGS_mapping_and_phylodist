@@ -56,6 +56,8 @@ module unload bwa/2020_03_19
 module load bwa/2020_03_19
 module load samtools/1.16
 
+echo "Beginning mapping"
+echo ""
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
 fastqToBam() {
@@ -76,4 +78,5 @@ ls *fq.gz | cut -d "." -f "1" | parallel fastqToBam {} $g $o
 module unload bwa/2020_03_19
 module unload samtools/1.16
 
+echo "Mapping complete"
 }

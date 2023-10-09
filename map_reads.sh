@@ -53,6 +53,8 @@ echo ""
 #cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/references
 bwa index ${g}
 
+echo "Beginning mapping"
+echo ""
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
 # -t threads equal to number of reads. when I use ${t} in samtools it gives the following error:
@@ -73,4 +75,5 @@ ls *fq.gz | cut -d "." -f "1,2" | parallel fastqToBam {} $g $o
 module unload bwa/2020_03_19
 module unload samtools/1.16
 
+echo "Mapping complete"
 }
