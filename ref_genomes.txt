@@ -1,6 +1,6 @@
-Aspidoscelis_marmoratus GCA_014337955.1_AspMar1.0_genomic.fna.gz
-Podarcis_muralis GCF_004329235.1_PodMur_1.0_genomic.fna.gz
-Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
+#Aspidoscelis_marmoratus GCA_014337955.1_AspMar1.0_genomic.fna.gz
+#Podarcis_muralis GCF_004329235.1_PodMur_1.0_genomic.fna.gz
+#Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
 #Lacerta_agilis GCF_009819535.1_rLacAgi1.pri_genomic.fna.gz
 #Hemicordylus_capensis GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz
 #Sceloporus_undulatus GCF_019175285.1_SceUnd_v1.1_genomic.fna.gz
@@ -16,9 +16,9 @@ Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
 #Danio_rerio GCF_000002035.6_GRCz11_genomic.fna.gz
 #Fundulus_heteroclitus GCF_011125445.2_MU-UCD_Fhet_4.1_genomic.fna.gz
 #Stegostoma_fasciatum GCF_022316705.1_sSteFas1.1_genomic.fna.gz
-#Pristis_pectinata GCF_009764475.1_sPriPec2.1.pri_genomic.fna.gz
-#Petromyzon_marinus GCF_010993605.1_kPetMar1.pri_genomic.fna.gz
-#Salvator_merianae GCA_003586115.2_HLtupMer6_genomic.fna.gz
+Pristis_pectinata GCF_009764475.1_sPriPec2.1.pri_genomic.fna.gz
+Petromyzon_marinus GCF_010993605.1_kPetMar1.pri_genomic.fna.gz
+Salvator_merianae GCA_003586115.2_HLtupMer6_genomic.fna.gz
 #Calyptommatus_sinebrachiatus GCA_022412395.1_HLcalSin1_genomic.fna.gz
 #Tretioscincus_oriximinensis GCA_022410635.1_HLtreOri1_genomic.fna.gz
 #Sphenodon_punctatus GCA_003113815.1_ASM311381v1_genomic.fna.gz
