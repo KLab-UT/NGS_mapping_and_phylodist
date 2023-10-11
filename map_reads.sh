@@ -61,9 +61,9 @@ echo ""
 # sort: option requires an argument -- '@'
 #so instead of ${t} i put 2
 fastqToBam() {
-	bwa mem -t 2 "$2" ${1}.fq.gz > "$3"/${1}.sam
+	[[ ! -f "${3}/${1}.sam" ]] && bwa mem -t 2 "$2" ${1}.fq.gz > ${3}/${1}.sam
 	echo "${3}/${1}.sam completed."
-	samtools sort ${3}/${1}.sam > "$3"/${1}_sorted.bam -@2
+	[[ ! -f "${3}/${1}_sorted.bam" ]] && samtools sort ${3}/${1}.sam > ${3}/${1}_sorted.bam -@2
 	echo "${3}/${1}_sorted.sam completed."
 }
 export -f fastqToBam
