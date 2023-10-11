@@ -16,13 +16,13 @@
 #Danio_rerio GCF_000002035.6_GRCz11_genomic.fna.gz
 #Fundulus_heteroclitus GCF_011125445.2_MU-UCD_Fhet_4.1_genomic.fna.gz
 #Stegostoma_fasciatum GCF_022316705.1_sSteFas1.1_genomic.fna.gz
-Pristis_pectinata GCF_009764475.1_sPriPec2.1.pri_genomic.fna.gz
-Petromyzon_marinus GCF_010993605.1_kPetMar1.pri_genomic.fna.gz
-Salvator_merianae GCA_003586115.2_HLtupMer6_genomic.fna.gz
+#Pristis_pectinata GCF_009764475.1_sPriPec2.1.pri_genomic.fna.gz
+#Petromyzon_marinus GCF_010993605.1_kPetMar1.pri_genomic.fna.gz
+#Salvator_merianae GCA_003586115.2_HLtupMer6_genomic.fna.gz
 #Calyptommatus_sinebrachiatus GCA_022412395.1_HLcalSin1_genomic.fna.gz
 #Tretioscincus_oriximinensis GCA_022410635.1_HLtreOri1_genomic.fna.gz
 #Sphenodon_punctatus GCA_003113815.1_ASM311381v1_genomic.fna.gz
-#Ambystoma_mexicanum GCA_001455525.1_AmbMex13_14.1.0_genomic.fna.gz
-#Eptatretus_burgeri GCA_900186335.3_Eburgeri_4.0_genomic.fna.gz
-#Latimeria_chalumnae GCF_000225785.1_LatCha1_genomic.fna.gz
+Ambystoma_mexicanum GCA_001455525.1_AmbMex13_14.1.0_genomic.fna.gz
+Eptatretus_burgeri GCA_900186335.3_Eburgeri_4.0_genomic.fna.gz
+Latimeria_chalumnae GCF_000225785.1_LatCha1_genomic.fna.gz
 ### genome too big ###Protopterus_annectens GCF_019279795.1_PAN1.0_genomic.fna.gz
