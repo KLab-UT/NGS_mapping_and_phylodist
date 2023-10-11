@@ -56,12 +56,16 @@ module unload bwa/2020_03_19
 module load bwa/2020_03_19
 module load samtools/1.16
 
+echo "Beginning mapping"
+echo ""
 # Create function that runs bwa and converts sam to bam
 # Include below line in fastqToBam
 fastqToBam() {
     # if unmerged.sam file does not already exist then merge to make unmerged.sam file.
     [[ ! -f "${3}/${1}.unmerged.sam" ]] && bwa mem -t 2 "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > ${3}/${1}.unmerged.sam
+    echo "${3}/${1}.unmerged.sam completed."
     samtools sort "$3"/${1}.unmerged.sam > "$3"/${1}.unmerged_sorted.bam -@ 2
+    echo "${3}/${1}.unmerged_sorted.bam completed."
 }
 export -f fastqToBam
 
@@ -74,4 +78,5 @@ ls *fq.gz | cut -d "." -f "1" | parallel fastqToBam {} $g $o
 module unload bwa/2020_03_19
 module unload samtools/1.16
 
+echo "Mapping complete"
 }
