@@ -62,9 +62,10 @@ echo ""
 # Include below line in fastqToBam
 fastqToBam() {
     # if unmerged.sam file does not already exist then merge to make unmerged.sam file.
-    [[ ! -f "${3}/${1}.unmerged.sam" ]] && bwa mem -t 2 "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > ${3}/${1}.unmerged.sam
+    #[[ ! -f "${3}/${1}.unmerged.sam" ]] && bwa mem -t 2 "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > ${3}/${1}.unmerged.sam
+    bwa mem -t 2 "$2" ${1}.unmerged1.fq.gz ${1}.unmerged2.fq.gz > ${3}/${1}.unmerged.sam
     echo "${3}/${1}.unmerged.sam completed."
-    [[ ! -f "${3}/${1}.unmerged_sorted.bam" ]] &&samtools sort "$3"/${1}.unmerged.sam > ${3}/${1}.unmerged_sorted.bam -@ 2
+    samtools sort "$3"/${1}.unmerged.sam > ${3}/${1}.unmerged_sorted.bam -@ 2
     echo "${3}/${1}.unmerged_sorted.bam completed."
 }
 export -f fastqToBam

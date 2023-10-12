@@ -48,7 +48,7 @@ echo "number of threads: " $t
 module load bwa/2020_03_19
 module load samtools/1.16
 
-echo "Indexing Reference"
+echo "Indexing Reference: ${g}"
 echo ""
 #cd /scratch/general/nfs1/utu_4310/whiptail_shared_data/references
 bwa index ${g}
@@ -61,9 +61,10 @@ echo ""
 # sort: option requires an argument -- '@'
 #so instead of ${t} i put 2
 fastqToBam() {
-	[[ ! -f "${3}/${1}.sam" ]] && bwa mem -t 2 "$2" ${1}.fq.gz > ${3}/${1}.sam
+	#[[ ! -f "${3}/${1}.sam" ]] && bwa mem -t 2 "$2" ${1}.fq.gz > ${3}/${1}.sam
+	bwa mem -t 2 "$2" ${1}.fq.gz > ${3}/${1}.sam
 	echo "${3}/${1}.sam completed."
-	[[ ! -f "${3}/${1}_sorted.bam" ]] && samtools sort ${3}/${1}.sam > ${3}/${1}_sorted.bam -@2
+	samtools sort ${3}/${1}.sam > ${3}/${1}_sorted.bam -@2
 	echo "${3}/${1}_sorted.sam completed."
 }
 export -f fastqToBam
