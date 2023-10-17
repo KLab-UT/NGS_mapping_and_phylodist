@@ -22,8 +22,8 @@
 #Calyptommatus_sinebrachiatus GCA_022412395.1_HLcalSin1_genomic.fna.gz
 #Tretioscincus_oriximinensis GCA_022410635.1_HLtreOri1_genomic.fna.gz
 #Sphenodon_punctatus GCA_003113815.1_ASM311381v1_genomic.fna.gz
-Ambystoma_mexicanum GCA_001455525.1_AmbMex13_14.1.0_genomic.fna.gz
-Eptatretus_burgeri GCA_900186335.3_Eburgeri_4.0_genomic.fna.gz
-Latimeria_chalumnae GCF_000225785.1_LatCha1_genomic.fna.gz
-#Malaclemys_terrapin GCF_027887155.1_rMalTer1.hap1_genomic.fna.gz
+#Ambystoma_mexicanum GCA_001455525.1_AmbMex13_14.1.0_genomic.fna.gz
+#Eptatretus_burgeri GCA_900186335.3_Eburgeri_4.0_genomic.fna.gz
+#Latimeria_chalumnae GCF_000225785.1_LatCha1_genomic.fna.gz
+Malaclemys_terrapin GCF_027887155.1_rMalTer1.hap1_genomic.fna.gz
 ### genome too big ###Protopterus_annectens GCF_019279795.1_PAN1.0_genomic.fna.gz
