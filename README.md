@@ -1,6 +1,17 @@
 # whiptail_mapping_and_phylogenetic_distance
-Scripts used to examine the difference in depth percentage between 28 vertibrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data.
+Scripts used to examine the difference in depth percentage between 28 vertibrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
 
+# research question
+How does the percentage of reads mapped to each genome vary between the vertibrates we mapped to.
+
+# Hypothesis
+I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
+
+# Predictions within hypothesis
+I suspect it wont be perfect and there will be data that makes us scratch our heads.
+
+# Methods
+Run raw reads through pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
 ---
 
 # Contents
