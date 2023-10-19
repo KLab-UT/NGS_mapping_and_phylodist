@@ -20,7 +20,7 @@ done
 
 echo ""
 echo "working directory:  $i"
-echo "output file:  $o"	
+echo "output file:  $o"
 
 if [ ! "$i" ] || [ ! "$o" ]; then
 	echo "arguments -o, and -i  must be provided"
@@ -47,6 +47,7 @@ depth() {
 
 	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
 	percentage=$(samtools flagstat ${1}_merged.bam | awk -F "[(|%]" 'NR == 3 {print $2}')
+#	samtools view -F 0x4 foo.sorted.bam | cut -f 1 | sort | uniq | wc -l
 	total_reads=$(samtools flagstat ${1}_merged.bam | awk -F " " 'NR == 1 {print $1}')
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$total_reads,$avg_depth,$percentage" >> "$2"/depth_percentage.txt
