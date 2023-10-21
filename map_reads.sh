@@ -65,14 +65,14 @@ fastqToBam() {
 	bwa mem -t 2 "$2" ${1}.fq.gz > ${3}/${1}.sam
 	echo "${3}/${1}.sam completed."
 	samtools sort ${3}/${1}.sam > ${3}/${1}_sorted.bam -@2
-	echo "${3}/${1}_sorted.sam completed."
+	echo "${3}/${1}_sorted.bam completed."
 }
 export -f fastqToBam
 
 echo "Aligning reads with reference with bwa mem."
 cd $i
 ls *fq.gz | cut -d "." -f "1,2" | parallel fastqToBam {} $g $o
-	
+# example of trimmed file KLC098_USD16091388L_HKFJFDSXX_L4.merged.fq.gz
 
 
 module unload bwa/2020_03_19
