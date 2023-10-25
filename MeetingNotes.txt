@@ -1,3 +1,6 @@
+October 25, 2023
+Randy added tree to whiptail_plots (along with a new script called get_vertebrata_tree.r). The older get_tree.r has been converted to get_lepidosauria_tree.r
+
 October 4, 2023 meeting with Dante
 Dante created an awesome bar chart. Now we need to put them in order. Randy will provide the correct order.
 
