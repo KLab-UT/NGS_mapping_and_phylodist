@@ -8,11 +8,11 @@
 
 
 # create working environment
-wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
-home=~/Biol_4310/whiptail_nmt_variation
+wd=/scratch/general/nfs1/utu_4310/whiptail_nmt_variation_data/mapped_reads
+home=~/Biol_4310/NGS_mapping_and_phylodist
 cd $wd
 #mkdir depth
-echo "#sample_ID, Ref_name, total_reads, avg_depth, map_percentage" > depth_percentage.txt
+echo "#sample_ID, Ref_name, total_reads, avg_depth, map_percentage, #_of_mapped_reads" > depth_percentage.txt
 # */ is list of directories in current directory
 for reference in */; do
 	# -o is $wd because I want one text file for all reference diretories.
