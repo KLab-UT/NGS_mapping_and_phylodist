@@ -41,7 +41,7 @@ depth() {
     echo "calculating avg_depth"
 	avg_depth=$(samtools depth -a "${g}" | awk '{sum+=$3} END {print sum/NR}')
 	#sepeate sample_ID and Ref_name using IFS
-	IFS=_. read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
+	IFS="_." read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
 	#denominator=$(samtools view -c ${g}_merged.bam)
@@ -69,6 +69,9 @@ echo "Reading depth."
 ######################################################### if not using parallel do "xargs -I {}" instead
 #ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3" | parallel depth "{}" "$o"
 
+# files look like this 
+# KLC098_Alligator_mississippiensis_merged.bam
+# KLC098_Alligator_mississippiensis_unmerged.bam
 cd $i
 genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -f "1-4")
 #(-e enables interpretation of backslash escapes)
