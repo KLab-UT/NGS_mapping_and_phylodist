@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --account=utu
-#SBATCH --partition=lonepeak
+#SBATCH --partition=kingspeak
 #SBATCH --nodes=1
 #SBATCH --ntasks=9
 #SBATCH -o slurm-%j.out-%N
@@ -8,7 +8,7 @@
 
 
 # create working environment
-wd=/scratch/general/nfs1/utu_4310/whiptail_nmt_variation_data/mapped_reads
+wd=/scratch/general/nfs1/utu_4310/whiptail_shared_data/mapped_reads
 home=~/Biol_4310/NGS_mapping_and_phylodist
 cd $wd
 #mkdir depth

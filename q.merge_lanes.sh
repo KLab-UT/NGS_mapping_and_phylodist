@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --account=utu
-#SBATCH --partition=lonepeak
+#SBATCH --partition=kingspeak
 #SBATCH --time=72:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=12
