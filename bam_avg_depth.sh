@@ -36,12 +36,12 @@ module load samtools/1.16
 depth() {
     g=$1
     output=$2
-    echo "g is:===== ${g}"
+    echo -e "sample: ${g}\n"
 	# get average depth
     echo "calculating avg_depth"
-	avg_depth=$(samtools depth -a "${g}_merged.bam" | awk '{sum+=$3} END {print sum/NR}')
+	avg_depth=$(samtools depth -a "${g}" | awk '{sum+=$3} END {print sum/NR}')
 	#sepeate sample_ID and Ref_name using IFS
-	IFS=_ read sample_ID ref_name1 ref_name2 <<< ${g}
+	IFS=_. read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
 	#denominator=$(samtools view -c ${g}_merged.bam)
@@ -51,14 +51,14 @@ depth() {
 
 	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
     echo "calculating percentage"
-	percentage=$(samtools flagstat "${g}_merged.bam" | awk -F "[(|%]" 'NR == 3 {print $2}')
+	percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
     # map_recentage is number of alignments divided by total number of reads, but mapped_reads is number of reads.
     echo "calculating mapped_reads"
-    mapped_reads=$(samtools view -F 0x4 "${g}_merged.bam" | cut -f 1 | sort | uniq | wc -l)
-#	try this ^^^
-	total_reads=$(samtools flagstat "${g}_merged.bam" | awk -F " " 'NR == 1 {print $1}')
+    mapped_reads=$(samtools view -F 0x4 "${g}" | cut -f 1 | sort | uniq | wc -l)
+	total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
+    MRfraction=$mapped_reads/$total_reads
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$total_reads,$avg_depth,$percentage,$mapped_reads" >> ${output}/depth_percentage.txt
+	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$percentage,$mapped_reads,$MRfraction" >> ${output}/depth_percentage.txt
 }
 export -f depth
 
@@ -70,9 +70,9 @@ echo "Reading depth."
 #ls | grep '^[A-Z]\+[0-9]\+_[A-Za-z]\+_[a-z]\+_merged.bam' | cut -d "_" -f "1,2,3" | parallel depth "{}" "$o"
 
 cd $i
-genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_merged.bam' | cut -d "_" -f "1-3")
+genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -f "1-4")
 #(-e enables interpretation of backslash escapes)
-echo -e "Genome: $genome\nOutput: $o"
+echo -e "Genome: $g\nOutput: $o"
 
 echo "$genome" | parallel depth "{}" "$o"
 
