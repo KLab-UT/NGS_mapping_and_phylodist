@@ -55,7 +55,9 @@ depth() {
     # map_recentage is number of alignments divided by total number of reads, but mapped_reads is number of reads.
     echo "calculating mapped_reads"
     mapped_reads=$(samtools view -F 0x4 "${g}" | cut -f 1 | sort | uniq | wc -l)
-	total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
+    unmapped_reads=$(samtools view -f 0x4 "${g}" | cut -f 1 | sort | uniq | wc -l)
+	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
+    total_reads=$mapped_reads+$unmapped_reads 
     MRfraction=$mapped_reads/$total_reads
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$percentage,$mapped_reads,$MRfraction" >> ${output}/depth_percentage.txt
