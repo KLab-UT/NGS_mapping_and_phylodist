@@ -18,6 +18,7 @@ ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Protopterus_annectens/lates
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Stegostoma_fasciatum/latest_assembly_versions/GCF_022316705.1_sSteFas1.1
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Pristis_pectinata/latest_assembly_versions/GCF_009764475.1_sPriPec2.1.pri
 ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Petromyzon_marinus/latest_assembly_versions/GCF_010993605.1_kPetMar1.pri
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Malaclemys_terrapin/latest_assembly_versions/GCF_027887155.1_rMalTer1.hap1
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Aspidoscelis_marmoratus/latest_assembly_versions/GCA_014337955.1_AspMar1.0
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Salvator_merianae/latest_assembly_versions/GCA_003586115.2_HLtupMer6
 ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_other/Calyptommatus_sinebrachiatus/latest_assembly_versions/GCA_022412395.1_HLcalSin1

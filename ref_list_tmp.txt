@@ -1,0 +1,1 @@
+ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Malaclemys_terrapin/latest_assembly_versions/GCF_027887155.1_rMalTer1.hap1/
