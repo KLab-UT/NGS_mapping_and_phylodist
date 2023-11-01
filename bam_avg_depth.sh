@@ -55,8 +55,8 @@ depth() {
     # 0x4    UNMAP   segment unmapped
     # 0x100 SECONDARY   secondary alignment
     # 0x800   SUPPLEMENTARY   supplementary alignment
-    mapped_reads=$(samtools view -F 0x904 ${g} | cut -f 1 | sort | uniq | wc -l)
-    unmapped_reads=$(samtools view -f 0x904 ${g} | cut -f 1 | sort | uniq | wc -l)
+    mapped_reads=$(samtools view -F 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
+    unmapped_reads=$(samtools view -f 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
 	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
     total_reads=$(($mapped_reads+$unmapped_reads)) 
     mapped_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
@@ -85,7 +85,9 @@ genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -
 #(-e enables interpretation of backslash escapes)
 echo -e "Genome: $genome\nOutput: $o"
 
+# make header
 echo "#sample_ID, Ref_name, merge_status, total_reads, avg_depth, aligned_percentage, #_of_mapped_reads, mapped_percentage" > depth_percentage.txt
+# get info from .bam files
 echo "$genome" | parallel depth "{}" "$o"
 
 echo "Done"
