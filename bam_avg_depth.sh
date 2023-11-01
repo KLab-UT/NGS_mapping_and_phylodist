@@ -59,14 +59,14 @@ depth() {
     unmapped_reads=$(samtools view -f 0x904 ${g} | cut -f 1 | sort | uniq | wc -l)
 	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
     total_reads=$(($mapped_reads+$unmapped_reads)) 
-    mapping_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
+    mapped_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
     echo "Aligned_percentage: $aligned_percentage" 
     echo "mapped_reads: $mapped_reads"
     echo "unmapped_reads: $unmapped_reads"
     echo "total_reads $total_reads"
     #mapping_fraction=$(($mapped_reads / $total_reads))
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$MR_fraction" >> ${output}/depth_percentage.txt
+	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$mapped_percentage" >> ${output}/depth_percentage.txt
 }
 export -f depth
 
