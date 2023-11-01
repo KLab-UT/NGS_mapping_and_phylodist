@@ -39,6 +39,7 @@ depth() {
     echo -e "sample: ${g}\n"
 	# get average depth
 	avg_depth=$(samtools depth -a "${g}" | awk '{sum+=$3} END {print sum/NR}')
+    echo "avg_depth: $avg_depth"
 	#sepeate sample_ID and Ref_name using IFS
 	IFS="_." read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
 	ref_name="${ref_name1}_${ref_name2}"
@@ -54,12 +55,16 @@ depth() {
     # 0x4    UNMAP   segment unmapped
     # 0x100 SECONDARY   secondary alignment
     # 0x800   SUPPLEMENTARY   supplementary alignment
-    mapped_reads=$(samtools view -F 0x904 "${g}" | cut -f 1 | sort | uniq | wc -l)
-    unmapped_reads=$(samtools view -f 0x904 "${g}" | cut -f 1 | sort | uniq | wc -l)
+    mapped_reads=$(samtools view -F 0x904 ${g} | cut -f 1 | sort | uniq | wc -l)
+    unmapped_reads=$(samtools view -f 0x904 ${g} | cut -f 1 | sort | uniq | wc -l)
 	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
     total_reads=$(($mapped_reads+$unmapped_reads)) 
-    MR_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
-    #MRfraction=$(($mapped_reads / $total_reads))
+    mapping_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
+    echo "Aligned_percentage: $aligned_percentage" 
+    echo "mapped_reads: $mapped_reads"
+    echo "unmapped_reads: $unmapped_reads"
+    echo "total_reads $total_reads"
+    #mapping_fraction=$(($mapped_reads / $total_reads))
 	#used commas as delimiters, could use spaces instead if prefered
 	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$MR_fraction" >> ${output}/depth_percentage.txt
 }
@@ -78,8 +83,9 @@ echo "Reading depth."
 cd $i
 genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -f "1-4")
 #(-e enables interpretation of backslash escapes)
-echo -e "Genome: $g\nOutput: $o"
+echo -e "Genome: $genome\nOutput: $o"
 
+echo "#sample_ID, Ref_name, merge_status, total_reads, avg_depth, aligned_percentage, #_of_mapped_reads, mapped_percentage" > depth_percentage.txt
 echo "$genome" | parallel depth "{}" "$o"
 
 echo "Done"
