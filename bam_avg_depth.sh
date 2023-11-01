@@ -38,10 +38,9 @@ depth() {
     output=$2
     echo -e "sample: ${g}\n"
 	# get average depth
-    echo "calculating avg_depth"
 	avg_depth=$(samtools depth -a "${g}" | awk '{sum+=$3} END {print sum/NR}')
 	#sepeate sample_ID and Ref_name using IFS
-	IFS="_." read sample_ID ref_name1 ref_name2 merge_status bam <<< ${g}
+	IFS="_." read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
 	ref_name="${ref_name1}_${ref_name2}"
 	# get percentage of reads mapped to each reference
 	#denominator=$(samtools view -c ${g}_merged.bam)
@@ -50,10 +49,8 @@ depth() {
 	#percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
 
 	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
-    echo "calculating percentage"
 	aligned_percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
     # map_recentage is number of alignments divided by total number of reads, but mapped_reads is number of reads.
-    echo "calculating mapped_reads"
     # 0x4    UNMAP   segment unmapped
     # 0x100 SECONDARY   secondary alignment
     # 0x800   SUPPLEMENTARY   supplementary alignment
