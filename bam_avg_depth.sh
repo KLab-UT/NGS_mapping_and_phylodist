@@ -86,7 +86,7 @@ genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -
 echo -e "Genome: $genome\nOutput: $o"
 
 # make header
-echo "#sample_ID, Ref_name, merge_status, total_reads, avg_depth, aligned_percentage, #_of_mapped_reads, mapped_percentage" > depth_percentage.txt
+echo "#sample_ID, Ref_name, merge_status, total_reads, avg_depth, aligned_percentage, #_of_mapped_reads, mapped_percentage" > mapped_percentage.txt
 # get info from .bam files
 echo "$genome" | parallel depth "{}" "$o"
 
