@@ -3,7 +3,7 @@
 time parallel -j{}
 {
 usage="$(basename "$0") [-h] [-i <working_directory] [-o <output_directory>]
-This program will trim raw reads.
+This program will trim raw reads. Raw reads are compressed fastq files (.fq.gz)
     -h  show this help text
     -i  Path to the working directory (the main directory for the raw reads)
     -o	Path to the output directory (the main directory for the clean reads)
@@ -47,9 +47,9 @@ echo ""
 function trim_reads {
 cd ${i}
 pwd
-#ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq | time parallel -j${t} --eta --bar "fastp -w 2 -i {}_1.fq.gz -I {}_2.fq.gz -m --merged_out ${o}/merged_reads/{}.merged.fq --out1 ${o}/unmerged_reads/{}.unmerged1.fq --out2 ${o}/unmerged_reads/{}.unmerged2.fq" 
+#ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq | time parallel -j${t} --eta --bar "fastp -w 2 -i {}_1.fq.gz -I {}_2.fq.gz -m --merged_out ${o}/merged_reads/{}.merged.fq --out1 ${o}/unmerged_reads/{}.unmerged1.fq --out2 ${o}/unmerged_reads/{}.unmerged2.fq"
 ls *.fq.gz | cut -d "_" -f "1,2,3,4" | sort | uniq > fastq_list.txt
-while read sample; do 
+while read sample; do
 	fastp 	-w ${t} \
 		-i ${sample}_1.fq.gz -I ${sample}_2.fq.gz \
 		-m --merged_out ${o}/merged_reads/"$sample".merged.fq / --out1 ${o}/unmerged_reads/"$sample".unmerged1.fq --out2 ${o}/unmerged_reads/"$sample".unmerged2.fq \
