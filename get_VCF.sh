@@ -2,7 +2,7 @@
 
 {
 usage="$(basename "$0") [-h] [-i directory for input files] [-g mapped reads directory]
-This program will map reads onto the reference directory
+This program will make a variant call format file (VCF file) from the bam files.
         -h show help text
         -i directory name where input files are located
         -g mapped reads directory"
