@@ -66,8 +66,9 @@ depth() {
     echo "total_reads $total_reads"
     #mapping_fraction=$(($mapped_reads / $total_reads))
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$mapped_percentage" >> ${output}/depth_percentage.txt
+	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$mapped_percentage" >> ${output}/mapped_percentage.txt
 }
+
 export -f depth
 
 echo "Reading depth."
