@@ -50,7 +50,7 @@ depth() {
 	#percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
 
 	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
-	aligned_percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
+	#aligned_percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
     # map_recentage is number of alignments divided by total number of reads, but mapped_reads is number of reads.
     # 0x4    UNMAP   segment unmapped
     # 0x100 SECONDARY   secondary alignment
@@ -60,13 +60,13 @@ depth() {
 	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
     total_reads=$(($mapped_reads+$unmapped_reads)) 
     mapped_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
-    echo "Aligned_percentage: $aligned_percentage" 
+#    echo "Aligned_percentage: $aligned_percentage" 
     echo "mapped_reads: $mapped_reads"
     echo "unmapped_reads: $unmapped_reads"
     echo "total_reads $total_reads"
     #mapping_fraction=$(($mapped_reads / $total_reads))
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$aligned_percentage,$mapped_reads,$mapped_percentage" >> ${output}/mapped_percentage.txt
+	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$mapped_reads,$mapped_percentage" >> ${output}/mapped_percentage.txt
 }
 
 export -f depth
