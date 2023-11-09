@@ -14,6 +14,14 @@ I suspect it wont be perfect and there will be data that makes us scratch our he
 Run raw reads through pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
 ---
 
+# <a name="Pipeline"></a>
+# Pipeline
+1.) clean raw reads using clean_reads.sh
+2.) use the cleaned reads to map to your genomes of choice by adding the species names and gzipped fastq files to ref_genomes.txt then running q.map_reads_to_genomes.sh which runs map_reads.sh. This creates the .sam and .bam files which are merged in step 3.
+3.) the bam files are merged to simplify and reducing the number of bam files that need to be read for info.
+4.) By running q.avg_depth.sh, which runs bam_avg_depth.sh, information from the merged.bam files about avg depth, total number of reads, and mapped_percentage for the 4 samples compared to each species genome will be added to mapped_percentage.txt.
+
+
 # Contents
 
 - [Background](#background)
