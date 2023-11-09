@@ -2,7 +2,7 @@
 Scripts used to examine the difference in depth percentage between 28 vertebrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
 
 # research question
-How does the percentage of reads mapped to each genome vary between the vertebrates we mapped to?
+We map reads from 4 samples to several genomes to show how mapped percentage correlates with phylogeny. How does the percentage of reads mapped to each genome vary between the closely related and distantly related vertebrates?
 
 # Hypothesis
 I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates' common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
@@ -12,6 +12,7 @@ I suspect it won't be perfect and there will be data that makes us scratch our h
 
 # Methods
 Run raw reads through the pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
+
 ---
 
 # <a name="Pipeline"></a>
