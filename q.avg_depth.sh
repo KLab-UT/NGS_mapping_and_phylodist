@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --account=utu
-#SBATCH --partition=kingspeak
+#SBATCH --partition=lonepeak
 #SBATCH --nodes=1
 #SBATCH --ntasks=9
 #SBATCH -o slurm-%j.out-%N
