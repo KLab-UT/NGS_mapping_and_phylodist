@@ -1,3 +1,15 @@
+7 October, 2023
+Dante is polishing up the new output file called "mapped_percentage.csv". This
+now gets the mapped reads (instead of the aligned reads) for merged and unmerged
+files from fastp. It also has the calculation of mapped percentage. We will
+calculate mapped percentage for both merged and unmerged reads by adding
+together the values of 'total_reads' and 'mapped_reads' and then dividing them.
+Dante is also merging the merged.bam and unmerged.bam into a single file (for
+        example, RLK004_Alligator_mississippiensis_merged.bam andn
+        RLK004_Alligator_mississippiensis_unmerged.bam will be merged into
+        RLK004_Alligator_mississippiensis.bam). From this, he will calculate
+average depth.
+
 October 25, 2023
 Randy added tree to whiptail_plots (along with a new script called get_vertebrata_tree.r). The older get_tree.r has been converted to get_lepidosauria_tree.r
 

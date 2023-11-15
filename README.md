@@ -1,18 +1,27 @@
 # whiptail_mapping_and_phylogenetic_distance
-Scripts used to examine the difference in depth percentage between 28 vertibrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
+Scripts used to examine the difference in depth percentage between 28 vertebrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
 
 # research question
-How does the percentage of reads mapped to each genome vary between the vertibrates we mapped to.
+We map reads from 4 samples to several genomes to show how mapped percentage correlates with phylogeny. How does the percentage of reads mapped to each genome vary between the closely related and distantly related vertebrates?
 
 # Hypothesis
-I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
+I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates' common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
 
 # Predictions within hypothesis
-I suspect it wont be perfect and there will be data that makes us scratch our heads.
+I suspect it won't be perfect and there will be data that makes us scratch our heads.
 
 # Methods
-Run raw reads through pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
+Run raw reads through the pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
+
 ---
+
+# <a name="Pipeline"></a>
+# Pipeline
+1.) Clean raw reads using clean_reads.sh
+2.) Use the cleaned reads to map to your genomes of choice by adding the species names and gzipped fastq files to ref_genomes.txt then running q.map_reads_to_genomes.sh which runs map_reads.sh. This creates the .sam and .bam files which are merged in step 3.
+3.) The bam files are merged to simplify and reduce the number of bam files that need to be read for info.
+4.) By running q.avg_depth.sh, which runs bam_avg_depth.sh, information from the merged.bam files about average depth, total number of reads, and mapped_percentage for the 4 samples compared to each species genome will be added to mapped_percentage.txt.
+
 
 # Contents
 
@@ -37,7 +46,7 @@ Examining the Nuc-Mt genetic variability between the sexual parental species pro
  "frozen"\*\* 
  genomes 
 of the parthenogenetic species. If no variation is present in Nuc-Mt genes between hybridizing species, then a source other than reduced compatibility between the divergent genomes is responsible for the reduced performance in parthenogens (e.g., intra-genomic interactions). 
-As a first step in this project, we will simply be examining which reference genome is the best to map to. We will make quantitative comparisons to 6 annottated reference genomes: The common wall lizard (*Podarcis muralis*), the aeolian wall lizard (*Podarcis raffonei*), the sand lizard (*Lacerta agilis*), the false girdled lizard (*Hemicordylus capensis*), the eastern fence lizard (*Sceloporus undulatus*), and the Burmese python (*Python bivittatus*).
+As a first step in this project, we will simply be examining which reference genome is the best to map to. We will make quantitative comparisons to 6 annotated reference genomes: The common wall lizard (*Podarcis muralis*), the aeolian wall lizard (*Podarcis raffonei*), the sand lizard (*Lacerta agilis*), the false girdled lizard (*Hemicordylus capensis*), the eastern fence lizard (*Sceloporus undulatus*), and the Burmese python (*Python bivittatus*).
 
 ---
 
@@ -73,7 +82,7 @@ cd /scratch/general/nfs1/
 mkdir -p u0123456/whiptail_nmt_variation_wd/raw_data
 ```
 
-You can then copy the files to your directory. You will need to do this either as a batch submission or using an interactive job. You can copy files in parallel (i.e., using multiple threads) using the shell tool [GNU parallel](https://www.gnu.org/software/parallel/). In order to do this, you need to make sure you specify the number of cores (executing units within a processor) you plan to use. Your cores will be able to perform tasks simultaneously, this is known as "in parallel". You will generally specify the number of "tasks" rather than the number of "cores", which is essentially the same concept (specifying the number of tasks is telling the computer "this is how many things I want to be done in parallel"). If my username was u0123456, I could do the following (either in my batch script or interactive job):
+You can then copy the files to your directory. You will need to do this either as a batch submission or using an interactive job. You can copy files in parallel (i.e., using multiple threads) using the shell tool [GNU parallel](https://www.gnu.org/software/parallel/). In order to do this, you need to make sure you specify the number of cores (executing units within a processor) you plan to use. Your cores will be able to perform tasks simultaneously, this is known as "in parallel". You will generally specify the number of "tasks" rather than the number of "cores", which is essentially the same concept (specifying the number of tasks is telling the computer "This is how many things I want to be done in parallel"). If my username was u0123456, I could do the following (either in my batch script or interactive job):
 
 ```
 # Setup interactive job with 10 hr time limit and 12 tasks (cores)
@@ -138,7 +147,7 @@ rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq
 ```
 
 ## BIOL 4310 Project
-As a class, we will create a pipeline that contains quality check, read cleaning, mapping, and analysis steps. Responsibility for the coding for these steps was randomly assigned and are as follows:
+As a class, we will create a pipeline that contains quality checks, read cleaning, mapping, and analysis steps. Responsibility for the coding for these steps was randomly assigned and are as follows:
 
 - Quality checking steps: Seun
 - Read cleaning step: Candice

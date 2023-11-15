@@ -38,8 +38,8 @@ depth() {
     output=$2
     echo -e "sample: ${g}\n"
 	# get average depth
-    echo "calculating avg_depth"
 	avg_depth=$(samtools depth -a "${g}" | awk '{sum+=$3} END {print sum/NR}')
+    echo "avg_depth: $avg_depth"
 	#sepeate sample_ID and Ref_name using IFS
 	IFS="_." read sample_ID ref_name1 ref_name2 merge_status <<< ${g}
 	ref_name="${ref_name1}_${ref_name2}"
@@ -50,16 +50,25 @@ depth() {
 	#percentage=$(echo "scale=2; $numerator / $denominator * 100" | bc)
 
 	#https://sarahpenir.github.io/bioinformatics/awk/calculating-mapping-stats-from-a-bam-file-using-samtools-and-awk/
-    echo "calculating percentage"
-	percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
+	#aligned_percentage=$(samtools flagstat "${g}" | awk -F "[(|%]" 'NR == 3 {print $2}')
     # map_recentage is number of alignments divided by total number of reads, but mapped_reads is number of reads.
-    echo "calculating mapped_reads"
-    mapped_reads=$(samtools view -F 0x4 "${g}" | cut -f 1 | sort | uniq | wc -l)
-	total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
-    MRfraction=$mapped_reads/$total_reads
+    # 0x4    UNMAP   segment unmapped
+    # 0x100 SECONDARY   secondary alignment
+    # 0x800   SUPPLEMENTARY   supplementary alignment
+    mapped_reads=$(samtools view -F 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
+    unmapped_reads=$(samtools view -f 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
+	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
+    total_reads=$(($mapped_reads+$unmapped_reads)) 
+    mapped_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
+#    echo "Aligned_percentage: $aligned_percentage" 
+    echo "mapped_reads: $mapped_reads"
+    echo "unmapped_reads: $unmapped_reads"
+    echo "total_reads $total_reads"
+    #mapping_fraction=$(($mapped_reads / $total_reads))
 	#used commas as delimiters, could use spaces instead if prefered
-	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$percentage,$mapped_reads,$MRfraction" >> ${output}/depth_percentage.txt
+	echo "$sample_ID,$ref_name,$merge_status,$total_reads,$avg_depth,$mapped_reads,$mapped_percentage" >> ${output}/mapped_percentage.txt
 }
+
 export -f depth
 
 echo "Reading depth."
@@ -75,8 +84,10 @@ echo "Reading depth."
 cd $i
 genome=$(ls | grep -E '^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam' | cut -d "_" -f "1-4")
 #(-e enables interpretation of backslash escapes)
-echo -e "Genome: $g\nOutput: $o"
+echo -e "Genome: $genome\nOutput: $o"
 
+# make header
+# get info from .bam files
 echo "$genome" | parallel depth "{}" "$o"
 
 echo "Done"
