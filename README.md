@@ -15,7 +15,7 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 
 ---
 
-# <a name="Pipeline"></a>
+# <a name="pipeline"></a>
 # Pipeline
 1.) Clean raw reads using clean_reads.sh
 2.) Use the cleaned reads to map to your genomes of choice by adding the species names and gzipped fastq files to ref_genomes.txt then running q.map_reads_to_genomes.sh which runs map_reads.sh. This creates the .sam and .bam files which are merged in step 3.
@@ -30,7 +30,7 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 
 - [Background](#background)
 - [Starting Files](#starting-files)
-- [General Pipeline](#general-pipeline)
+- [Pipeline](#pipeline)
 
 ---
 
