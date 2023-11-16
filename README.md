@@ -22,6 +22,9 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 3.) The bam files are merged to simplify and reduce the number of bam files that need to be read for info.
 4.) By running q.avg_depth.sh, which runs bam_avg_depth.sh, information from the merged.bam files about average depth, total number of reads, and mapped_percentage for the 4 samples compared to each species genome will be added to mapped_percentage.txt.
 
+# <a name="Results"></a>
+# Results
+![alt text](https://github.com/KLab-UT/NGS_mapping_and_phylodist/edit/main/whiptail_plots/Comparison_of_species_to_whiptails_barplot_2.png)
 
 # Contents
 
