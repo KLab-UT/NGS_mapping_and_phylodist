@@ -24,7 +24,7 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 
 # <a name="Results"></a>
 # Results
-![alt text](https://github.com/KLab-UT/NGS_mapping_and_phylodist/edit/main/whiptail_plots/Comparison_of_species_to_whiptails_barplot_2.png)
+![alt text](https://github.com/KLab-UT/NGS_mapping_and_phylodist/edit/main/whiptail_plots/Comparison_of_species_to_whiptails_barplot_2.png?raw=true)
 
 # Contents
 
