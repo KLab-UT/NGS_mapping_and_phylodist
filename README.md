@@ -15,19 +15,22 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 
 ---
 
-# <a name="Pipeline"></a>
+# <a name="pipeline"></a>
 # Pipeline
 1.) Clean raw reads using clean_reads.sh
 2.) Use the cleaned reads to map to your genomes of choice by adding the species names and gzipped fastq files to ref_genomes.txt then running q.map_reads_to_genomes.sh which runs map_reads.sh. This creates the .sam and .bam files which are merged in step 3.
 3.) The bam files are merged to simplify and reduce the number of bam files that need to be read for info.
 4.) By running q.avg_depth.sh, which runs bam_avg_depth.sh, information from the merged.bam files about average depth, total number of reads, and mapped_percentage for the 4 samples compared to each species genome will be added to mapped_percentage.txt.
 
+# <a name="Results"></a>
+# Results
+![alt text](whiptail_plots/Comparison_of_species_to_whiptails_barplot_2.png "Whiptail Comaptison Barplot")
 
 # Contents
 
 - [Background](#background)
 - [Starting Files](#starting-files)
-- [General Pipeline](#general-pipeline)
+- [Pipeline](#pipeline)
 
 ---
 
