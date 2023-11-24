@@ -1,6 +1,6 @@
 #Aspidoscelis_marmoratus GCA_014337955.1_AspMar1.0_genomic.fna.gz
 #Podarcis_muralis GCF_004329235.1_PodMur_1.0_genomic.fna.gz
-#Podarcis_raffonei GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
+#Podarcis_raffoneae GCF_027172205.1_rPodRaf1.pri_genomic.fna.gz
 #Lacerta_agilis GCF_009819535.1_rLacAgi1.pri_genomic.fna.gz
 #Hemicordylus_capensis GCF_027244095.1_rHemCap1.1.pri_genomic.fna.gz
 #Sceloporus_undulatus GCF_019175285.1_SceUnd_v1.1_genomic.fna.gz

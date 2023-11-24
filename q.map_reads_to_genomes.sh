@@ -29,7 +29,7 @@ mkdir -p $wd/mapped_reads/Homo_sapiens
 mkdir -p $wd/mapped_reads/Lacerta_agilis
 mkdir -p $wd/mapped_reads/Mus_musculus
 mkdir -p $wd/mapped_reads/Podarcis_muralis
-mkdir -p $wd/mapped_reads/Podarcis_raffonei
+mkdir -p $wd/mapped_reads/Podarcis_raffoneae
 mkdir -p $wd/mapped_reads/Python_bivittatus
 #mkdir -p $wd/mapped_reads/Protopterus_annectens
 mkdir -p $wd/mapped_reads/Pristis_pectinata
