@@ -14,7 +14,7 @@ library(ggplot2)
 #   show.legend = NA,
 #   inherit.aes = TRUE
 # )
-file_path <- "Merged_mapped_percentage_sorted.csv"
+file_path <- "Map_percentage_and_phylodist_sorted.csv"
 data <- read.csv(file_path) 
 mapped_percentages <- data[, 5]
 species_names <- data[, 1]
