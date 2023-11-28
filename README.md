@@ -1,15 +1,33 @@
-# whiptail_mapping_and_phylogenetic_distance
-Scripts used to examine the difference in depth percentage between 28 vertebrate genomes and sexual species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
+# Contents
 
-# research question
+- [Introduction](#intro)
+- [Research Question](#researchQuestion)
+- [Hypothesis](#hypothesis)
+- [Prediction](#prediction)
+- [Methods](#methods)
+- [Pipeline](#pipeline)
+- [Results](#results)
+- [Background](#background)
+- [Starting Files](#starting-files)
+- [Example](#example)
+
+<a name="intro"></a>
+# Introduction
+To determine the relationship between whiptail mapping percentage and phylogenetic distance. These scripts are used to examine the difference in mapped percentage between 28 vertebrate genomes and species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data. 
+
+<a name="researchQuestion"></a>
+# Research Question
 We map reads from 4 samples to several genomes to show how mapped percentage correlates with phylogeny. How does the percentage of reads mapped to each genome vary between the closely related and distantly related vertebrates?
 
+<a name="hypothesis"></a>
 # Hypothesis
 I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates' common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
 
+<a name="prediction"></a>
 # Predictions within hypothesis
 I suspect it won't be perfect and there will be data that makes us scratch our heads.
 
+<a name="methods"></a>
 # Methods
 Run raw reads through the pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
 
@@ -22,21 +40,16 @@ Run raw reads through the pipeline. clean raw reads before mapping them to the 2
 3.) The bam files are merged to simplify and reduce the number of bam files that need to be read for info.
 4.) By running q.avg_depth.sh, which runs bam_avg_depth.sh, information from the merged.bam files about average depth, total number of reads, and mapped_percentage for the 4 samples compared to each species genome will be added to mapped_percentage.txt.
 
-# <a name="Results"></a>
+# <a name="results"></a>
 # Results
 ![alt text](whiptail_plots/Comparison_of_species_to_whiptails_barplot_2.png "Whiptail Comaptison Barplot")
 
-# Contents
 
-- [Background](#background)
-- [Starting Files](#starting-files)
-- [Pipeline](#pipeline)
 
 ---
 
 # <a name="background"></a>
 # Background
-
 
 Parthenogenetic whiptail lizards have been shown to have lower endurance capacity 
 ([Cullum, 1997](https://www.journals.uchicago.edu/doi/abs/10.1086/286055?casa_token=q8DOEvxRkccAAAAA:nmq4l99bzJ7XY8vxokdkj0eRg6816F4_zQ9VSFx7sstxB_qBfty9GAPVe1uUGPgpuMU7CZL4ySIZ); [Klabacka et al., 2022](https://www.journals.uchicago.edu/doi/full/10.1086/719014?casa_token=_E1ccM7e3WkAAAAA%3A1JC_ft2sxeGGwmoiBGjjWNGuLMJX-gXpmfMZsWbjXGbXV4iFVCKvK1R8vbg92gTPLfhYSnbAPYNt))
@@ -149,16 +162,12 @@ rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq
 rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Python_bivittatus/latest_assembly_versions/GCF_000186305.1_Python_molurus_bivittatus-5.0.2/GCF_000186305.1_Python_molurus_bivittatus-5.0.2_genomic.gff.gz .
 ```
 
-## BIOL 4310 Project
-As a class, we will create a pipeline that contains quality checks, read cleaning, mapping, and analysis steps. Responsibility for the coding for these steps was randomly assigned and are as follows:
-
-- Quality checking steps: Seun
-- Read cleaning step: Candice
-- Read mapping step: Dante
-- Analysis: Everyone
-
-You will each contribute to the pipeline contained within the bash file ```fastq_2_bam.sh```. Your sections are marked by comments- you should only add code to your respective section (this way we can avoid merge conflicts). We will work on sections that require everyone's input in class. IF you would like to move forward, you should make a copy of the ```fastq_2_bam.sh``` file that you can use to create your own pipeline. I encourage this! It will allow you to work on all of the pieces together. However, for the official ```fastq_2_bam.sh``` file you should only add code to your assigned section.
-
+<a name="example"></a>
+# Example
+-trim reads
+-map reads
+-get data
+-make bar graph
 
 
 
