@@ -5,7 +5,7 @@
 - [Hypothesis](#hypothesis)
   - [Prediction](#prediction)
 - [Methods](#methods)
-- [Pipeline](#pipeline)
+  - [Pipeline](#pipeline)
 - [Results](#results)
 - [Background](#background)
 - [Starting Files](#starting-files)
