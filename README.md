@@ -29,7 +29,7 @@ I suspect it won't be perfect and there will be data that makes us scratch our h
 
 <a name="methods"></a>
 # Methods
-Run raw reads through the pipeline. clean raw reads before mapping them to the 28 vertebrate genomes. Then merge the bam files to simplify and determine % of reads mapped to each genome.
+To determine the relationships, run the raw reads through the pipeline. The raw reads must be cleaned before mapping them to each of the 28 vertebrate genomes. The resultant bam files from cleaning are merged to for simplification. From the condensed bam files the % of reads mapped to each genome are determined.
 
 ---
 
