@@ -5,16 +5,16 @@ class Sample:
         self.name = name_in
 
     def add_total_merged(self, tmr_in):
-        self.total_merged_reads = tmr_in
+        self.total_merged_reads = int(tmr_in)
        
     def add_total_unmerged(self, tur_in):
-        self.total_unmerged_reads = tur_in
+        self.total_unmerged_reads = int(tur_in)
 
     def add_mapped_merged(self, mmr_in):
-        self.mapped_merged_reads = mmr_in
+        self.mapped_merged_reads = int(mmr_in)
 
     def add_mapped_unmerged(self, mur_in):
-        self.mapped_unmerged_reads = mur_in
+        self.mapped_unmerged_reads = int(mur_in)
 
     def get_combined_total(self):
         combined_total_reads = self.total_merged_reads + self.total_unmerged_reads
@@ -25,10 +25,10 @@ class Sample:
         return combined_mapped_reads
     
     def add_merged_avgdepth(self, mad_in):
-        self.merged_avgdepth = mad_in
+        self.merged_avgdepth = float(mad_in)
 
     def add_unmerged_avgdepth(self, uad_in):
-        self.unmerged_avgdepth = uad_in
+        self.unmerged_avgdepth = float(uad_in)
 
     def get_combined_avgdepth(self):
         combined_avgdepth = self.merged_avgdepth + self.unmerged_avgdepth
@@ -48,28 +48,43 @@ for line in infile:
         total_reads = line_split[3]
         avg_depth = line_split[4]
         mapped_reads = line_split[5]
-        sample = Sample(sample_id)
-        if merge_type = "merged.bam":
-            sample.add_total_merged(total_reads)
-            sample.add_mapped_merged(mapped_reads)
-            sample.add_merged_avgdepth(avg_depth)
-        elif merge_type = "unmerged.bam":
-            sample.add_total_merged(total_reads)
-            sample.add_mapped_merged(mapped_reads)
-            sample.add_merged_avgdepth(avg_depth)
         
         if ref_id not in ref_dict:
             ref_dict[ref_id] = {}
         if sample_id in ref_dict[ref_id]:
-            # adding to the sample object that already exists
-            pass
+            # add to sample object in the dictionary
+            if merge_type == "merged.bam":
+                ref_dict[ref_id][sample_id].add_total_merged(total_reads)
+                ref_dict[ref_id][sample_id].add_mapped_merged(mapped_reads)
+                ref_dict[ref_id][sample_id].add_merged_avgdepth(avg_depth)
+            elif merge_type == "unmerged.bam":
+                ref_dict[ref_id][sample_id].add_total_unmerged(total_reads)
+                ref_dict[ref_id][sample_id].add_mapped_unmerged(mapped_reads)
+                ref_dict[ref_id][sample_id].add_unmerged_avgdepth(avg_depth)
         else:
             # create sample object and add it to the dictionary
-            ref_dict[ref_id][sample_id] = Sample(sample_id)
+            if merge_type == "merged.bam":
+                ref_dict[ref_id][sample_id] = Sample(sample_id)
+                ref_dict[ref_id][sample_id].add_total_merged(total_reads)
+                ref_dict[ref_id][sample_id].add_mapped_merged(mapped_reads)
+                ref_dict[ref_id][sample_id].add_merged_avgdepth(avg_depth)
+            elif merge_type == "unmerged.bam":
+                ref_dict[ref_id][sample_id] = Sample(sample_id)
+                ref_dict[ref_id][sample_id].add_total_unmerged(total_reads)
+                ref_dict[ref_id][sample_id].add_mapped_unmerged(mapped_reads)
+                ref_dict[ref_id][sample_id].add_unmerged_avgdepth(avg_depth)
+
 
 print(ref_dict)    
     
     
 infile.close()
     
+with open("tmp_outfile_RK.txt", 'w') as outfile:
+    outfile.write(f"Reference_id,Sample_id,Total_reads,Mapped_reads,Percent_mapped,Avg_depth\n")
+    for ref,sample_dict in ref_dict.items():
+        for sample_id,sample_obj in sample_dict.items():
+            percent_mapped = sample_obj.get_combined_mapped() / sample_obj.get_combined_total()
+            outfile.write(f"{ref},{sample_id},{sample_obj.get_combined_total()},{sample_obj.get_combined_mapped()},{percent_mapped},{sample_obj.get_combined_avgdepth()}\n")
+        
     
