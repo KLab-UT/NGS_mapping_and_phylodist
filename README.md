@@ -168,9 +168,10 @@ Start by cloning the repository.
 ```
 git clone git@github.com:KLab-UT/NGS_mapping_and_phylodist.git
 ```
-Make sure your bam files follow this naming convention. (^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam) and put them all in a <bam_files> directory then try running the following.
+Make sure your bam files follow this naming convention. (sampleID_Genus_species_mergedStatus.bam) and put them all in a <bam_files> directory then try running the following.
 ```
-bash bam_avg_depth.sh -o <current_directory> -i <bam_files_directory>
+echo "Sample_ID, Reference_name, Merged_status, Total_#_of_reads, Avg_depth, #_of_Mapped_reads, Mapped_percentage" > output_file/map_percentage.txt
+bash bam_avg_depth.sh -o output_directory -i <bam_files_directory>
 ```
 Then look for map_percentage.txt in your current directory.
 NOTE: the bash scripts are meant to be run on the CHPC and uses things like "module" and "parallel" which may not work on your local machine.
