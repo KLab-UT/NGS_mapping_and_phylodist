@@ -164,8 +164,12 @@ rsync --copy-links --times --verbose rsync://ftp.ncbi.nlm.nih.gov/genomes/refseq
 
 <a name="example"></a>
 # Example
+Start by cloning the repository.
+```
+git clone git@github.com:KLab-UT/NGS_mapping_and_phylodist.git
+```
 Make sure your bam files follow this naming convention. (^[A-Z]+[0-9]+_[A-Za-z]+_[a-z]+_[a-z]+.bam) and put them all in a <bam_files> directory then try running the following.
-  ```
-  bash bam_avg_depth.sh -o <current_directory> -i <bam_files>
-  ```
+```
+bash bam_avg_depth.sh -o <current_directory> -i <bam_files>
+```
 Then look for map_percentage.txt in your current directory.
