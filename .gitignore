@@ -13,3 +13,4 @@ q.temp_map_reads_to_genomes.sh
 ref_genomes.txt
 ref_genomes_2.txt
 .temp*
+test

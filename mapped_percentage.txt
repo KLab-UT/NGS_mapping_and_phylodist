@@ -223,3 +223,4 @@ RLK019,Tretioscincus_oriximinensis,unmerged.bam,134530020,2.30817,34438900,.2559
 RLK034,Tretioscincus_oriximinensis,unmerged.bam,137824121,2.49501,37041933,.268762
 RLK004,Tretioscincus_oriximinensis,unmerged.bam,146748647,2.53475,37824508,.257750
 KLC098,Tretioscincus_oriximinensis,unmerged.bam,137422605,2.38172,35507391,.258381
+A1,B_c,d.bam,444,0.0161785,444,1.000000
