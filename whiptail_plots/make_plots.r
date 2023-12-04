@@ -5,7 +5,7 @@ library('gridExtra')
 # Use this if not in this directory: setwd(<path-to-dir-with-tre-file>)
 
 # Import data as dataframe
-dat <- read.csv('../depth_and_dist.csv')
+dat <- read.csv('depth_and_dist.csv')
 # look at first few rows of data
 head(dat)
 #dat$log_dist = log(dat$dist)
