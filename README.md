@@ -13,7 +13,8 @@
 
 <a name="intro"></a>
 # Introduction
-To determine the relationship between whiptail mapping percentage and phylogenetic distance. These scripts are used to examine the difference in mapped percentage between 28 vertebrate genomes and species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data.
+A major obstacle in genomic research with non-model organisms (99.99% of all organisms on earth) is the selection of an appropriate reference genome to use for bioinformatic processing of genetic sequencing data. Raw genomic data is ideally mapped to a reference genome from the same organism, but limited research of non-model organisms typically means the absence of a reference genome. One solution is to use a genome from a closely related organism. However, mutations that accumulatebetween species cale with time, meaning that increased genetic difference in more distantly related taxa will result in decreased mapping efficiency. Among amniote vertebrates, squamate repties are a great system for testing mapping efficiency across clades since this group is the most species rich of all amniotes. \n
+To determine the relationship between whiptail mapping efficiencey and phylogenetic distance. These scripts are used to examine the difference in mapped percentage between 28 vertebrate genomes and species of whiptail lizards (genus Aspidoscelis) using whole-genome sequencing data.
 
 <a name="researchQuestion"></a>
 # Research Question
@@ -21,11 +22,11 @@ We map reads from 4 samples to several genomes to show how mapped percentage cor
 
 <a name="hypothesis"></a>
 # Hypothesis
-I assume that the percentage of reads mapped is positively correlated with the recency of the vertebrates' common ancestor with Aspidoscelis species. (ie. how closely related the vertebrate is with aspidoscelis.)
+Mapping efficiency and patristic distance have a linear relationship and mapping efficiency is negatively corelated with patristic distance. (patristic distance is how distantly related species are.)
 
 <a name="prediction"></a>
 ## Predictions within hypothesis
-I suspect it won't be perfect and there will be data that makes us scratch our heads.
+I predict that mapping efficiency and patristic distance will have a linear relationship and mapping efficiency will be negatively corelated with patristic distance.
 
 <a name="methods"></a>
 # Methods
@@ -178,3 +179,7 @@ bash bam_avg_depth.sh -o ${output_directory} -i ${bam_files_directory}
 ```
 Then look for map_percentage.txt in your current directory.
 NOTE: the bash scripts are meant to be run on the CHPC and uses things like "module" and "parallel" which may not work on your local machine.
+
+<a name="example"></a>
+# Future Directions
+This is relevant information for researchers who work on non-model organisms to help determine their choice of reference. To improve upon this I'd like determine how the data changes as you change the mapping parameters to be less strict.
