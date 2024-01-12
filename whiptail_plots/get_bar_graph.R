@@ -18,16 +18,17 @@ library(ggplot2)
 file_path <- "Map_percentage_and_phylodist_sorted.csv"
 data <- read.csv(file_path) 
 map_percentages <- data[, 5]
+avg_depth <- data[, 4]
 species_names <- data[, 1]
 #geom_bar(map_percentage)
 par(mar = c(14, 4, 4, 0))
 par(cex.axis = 1.0)
-barplot(map_percentages,
+barplot(avg_depth,
         names.arg = species_names,
         col = "green",
         main = "Comparison of Species to Whiptails",
         xlab = "",
-        ylab = "Map Percentage",
+        ylab = "Average Depth",
         las = 2)  # Rotates x-axis labels vertically for readability
 
 file_path <- "top_3_map_percentage.csv"
