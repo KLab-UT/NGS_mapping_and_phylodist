@@ -58,7 +58,8 @@ depth() {
     mapped_reads=$(samtools view -F 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
     unmapped_reads=$(samtools view -f 0x4 ${g} | cut -f 1 | sort | uniq | wc -l)
 	#total_reads=$(samtools flagstat "${g}" | awk -F " " 'NR == 1 {print $1}')
-    total_reads=$(($mapped_reads+$unmapped_reads)) 
+	total_reads=$(samtools view -c ${g})
+    #total_reads=$(($mapped_reads+$unmapped_reads)) 
     mapped_percentage=$(echo "scale=6; $mapped_reads / $total_reads" | bc)
 #    echo "Aligned_percentage: $aligned_percentage" 
     echo "mapped_reads: $mapped_reads"
