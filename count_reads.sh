@@ -21,7 +21,7 @@ for file in *.fq.gz; do
 
 
 	echo "$file , $read_counts" >> ../count_reads.csv
-
+done
 cd ../unmerged_reads
 
 
