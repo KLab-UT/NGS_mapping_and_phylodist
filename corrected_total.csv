@@ -1,0 +1,6 @@
+#sample_ID,Ref_name,total_reads,#_of_mapped_reads
+#sample_ID, total_reads, Ref_name,
+KLC098,258965032,Tretioscincus_oriximinensis,
+RLK004,273261030,Tretioscincus_oriximinensis,
+RLK019,254270794,Tretioscincus_oriximinensis,
+RLK034,271025183,Tretioscincus_oriximinensis,
