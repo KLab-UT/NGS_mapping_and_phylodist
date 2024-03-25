@@ -1,0 +1,16 @@
+Title: The nature of the negative relationship between phylogenetic distance and genomic mapping success
+Abstract:
+Introduction:
+Hypothesis:
+Predictions:
+Methods:
+-How did we get the data?
+-How we analyzed the data
+-How we processed the data?
+Background:
+-Why did we do it? 
+-What is the significance?
+Results and Figures:
+Conclusion:
+-Partial logarithm
+
